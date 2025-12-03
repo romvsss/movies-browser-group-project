@@ -11,8 +11,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background: ${({ theme }) => theme.colors.whisper};
+    color: ${({ theme }) => theme.colors.black};
     font-family: 'Poppins', sans-serif;
-    color: black;
     word-break: break-word;
   }
 `;
