@@ -1,10 +1,10 @@
 import { Buttons } from "./Buttons";
 import { Logo } from "./Logo/index";
 import { SearchBar } from "./SearchBar/index";
-import { NavigationWrapper, RowWrapper } from "./styled";
+import { Container, NavigationWrapper, RowWrapper } from "./styled";
 
 export const Navigation = () => (
-  <>
+  <Container>
     <NavigationWrapper>
       <RowWrapper>
         <Logo />
@@ -12,5 +12,5 @@ export const Navigation = () => (
       </RowWrapper>
       <SearchBar />
     </NavigationWrapper>
-  </>
+  </Container>
 );
