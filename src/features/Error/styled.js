@@ -54,7 +54,7 @@ export const Button = styled.button`
   transition: 0.3s;
 
   &:hover {
-    filter: brightness(110%);
+    background-color: #0055ffff;
     transform: scale(1.02);
   }
 
