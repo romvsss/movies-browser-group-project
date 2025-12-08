@@ -30,14 +30,14 @@ height: auto;
 `;
 export const LoadingHeader = styled.h2`
 padding: 8px, 16px;
-margin-left: 276px;
+margin-left: 0px;
 margin-top: 56px;
 font-weight: 600 bold;
 font-size: 36px;
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     margin-top: 23px;
-    margin-left: 16px;
+    margin-left: 0px;
     font-size: 24px;
 }
 `;
