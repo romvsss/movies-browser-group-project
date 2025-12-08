@@ -12,11 +12,13 @@ export const Container = styled.div`
 export const NavigationWrapper = styled.nav`
   max-width: 1368px;
   margin: auto;
+  padding: 0 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    padding: 0;
     flex-direction: column;
     align-items: stretch;
     flex-wrap: wrap;
