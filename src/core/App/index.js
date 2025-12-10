@@ -4,6 +4,7 @@ import { GlobalStyle } from "./GlobalStyle";
 import { theme } from "./theme";
 import { Navigation } from "../../common/Navigation";
 import { Container } from "./styled";
+import { MovieList } from "../../features/MovieList";
 
 export const App = () => (
   <HashRouter>
@@ -11,11 +12,7 @@ export const App = () => (
       <GlobalStyle />
       <Navigation />
       <Container>
-        {/* normalize.css and added styles check up */}
-        <div style={{ background: "white", padding: "10px" }}>
-          <h1>Movies Browser App!</h1>
-        </div>
-        {/* normalize.css and added styles check up */}
+        <MovieList />
       </Container>
     </ThemeProvider>
   </HashRouter>
