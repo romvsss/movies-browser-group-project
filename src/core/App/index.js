@@ -4,10 +4,10 @@ import { GlobalStyle } from "./GlobalStyle";
 import { theme } from "./theme";
 import { Navigation } from "../../common/Navigation";
 import { Container } from "./styled";
-import { MovieList } from "../../features/MovieList";
-import { MoviePage } from "../../features/MoviePage";
-import { People } from "../../features/People";
-import { Profile } from "../../features/Profile";
+import { MovieList } from "../../features/Movies/MovieList";
+import { MoviePage } from "../../features/Movies/MoviePage";
+import { People } from "../../features/Peoples/PeopleList";
+import { Profile } from "../../features/Peoples/Profile";
 
 export const App = () => (
   <HashRouter>
