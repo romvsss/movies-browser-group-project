@@ -10,7 +10,6 @@ export const MovieTile = styled.div`
   flex-direction: column;
   gap: 8px;
   overflow: hidden;
-  aspect-ratio: 3.24 / 6.5;
   height: 100%;
 
   &:hover {
@@ -18,10 +17,8 @@ export const MovieTile = styled.div`
     transform: translateY(-1px);
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.mobileMax + 1}px) {
     min-height: 650px;
-    aspect-ratio: 3.24 / 6.5;
-    width: 100%;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
@@ -38,6 +35,7 @@ export const MovieTile = styled.div`
 export const Poster = styled.img`
   aspect-ratio: 2.92 / 4.34;
   width: 100%;
+  border-radius: 5px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.mobileMax + 1}px) {
     aspect-ratio: 2.92 / 4.34;
@@ -103,7 +101,6 @@ export const GenreButtons = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 8px;
-
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     width: 126px;
