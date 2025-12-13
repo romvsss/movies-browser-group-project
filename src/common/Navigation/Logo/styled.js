@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as VideoSvg } from "./video.svg";
+import { ReactComponent as VideoSvg } from "../../../images/video.svg";
 
 export const LeftWrapper = styled.div`
   display: flex;

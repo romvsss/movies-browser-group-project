@@ -10,6 +10,7 @@ export const theme = {
     white: "#FFFFFF",
     whisper: "#F5F5FA",
     mystic: "#E4E6F0",
+    silver: "#C4C4C4",
     waterloo: "#7E839A",
     black: "#000000",
     candlelight: "#FCD420",

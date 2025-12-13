@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as StarSvg } from "./shape-star.svg";
+import { ReactComponent as StarSvg } from "../../../../images/shape-star.svg";
 
 export const MovieTile = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
@@ -46,6 +46,31 @@ export const Poster = styled.img`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     width: 116px;
     height: 169px;
+  }
+`;
+
+export const PosterPlaceholder = styled.div`
+  background-color: ${({ theme }) => theme.colors.silver};
+  border-radius: 5px;
+  width: 100%;
+  aspect-ratio: 2.92 / 4.34;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 50%;
+    height: auto;
+    opacity: 0.5;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    width: 116px;
+    height: 169px;
+
+    svg {
+      width: 48px;
+    }
   }
 `;
 
