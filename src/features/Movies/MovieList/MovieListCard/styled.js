@@ -15,6 +15,11 @@ export const MovieTile = styled.div`
   &:hover {
     cursor: pointer;
     transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.effects.tileShadowHover};
+  }
+
+  &:active {
+    filter: brightness(110%);
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.mobileMax + 1}px) {
@@ -119,7 +124,7 @@ export const Year = styled.p`
     line-height: 150%;
   }
 `;
-export const GenreButtons = styled.div`
+export const GenresWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -133,26 +138,14 @@ export const GenreButtons = styled.div`
   }
 `;
 
-export const GenreButton = styled.button`
+export const Genre = styled.p`
   background-color: ${({ theme }) => theme.colors.mystic};
-  border: none;
   margin: 0;
   border-radius: 5px;
   padding: 8px 16px;
   font-weight: 400;
   font-size: 14px;
   line-height: 140%;
-
-  &:hover {
-    filter: brightness(107%);
-    box-shadow: ${({ theme }) => theme.effects.tileShadow};
-    cursor: pointer;
-  }
-
-  &:active {
-    filter: brightness(110%);
-    box-shadow: ${({ theme }) => theme.effects.tileShadow};
-  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     padding: 4px 8px;

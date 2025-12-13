@@ -13,8 +13,8 @@ import {
   HeaderContainer,
   Title,
   Year,
-  GenreButtons,
-  GenreButton,
+  GenresWrapper,
+  Genre,
   RatingContainer,
   Star,
   Rate,
@@ -82,11 +82,11 @@ export const MovieListCard = () => {
               <Title>{movie.title}</Title>
               <Year>{year}</Year>
 
-              <GenreButtons>
-                {genres.slice(0, 3).map((genre) => (
-                  <GenreButton key={genre}>{genre}</GenreButton>
+              <GenresWrapper>
+                {genres.slice().map((genre) => (
+                  <Genre key={genre}>{genre}</Genre>
                 ))}
-              </GenreButtons>
+              </GenresWrapper>
 
               <RatingContainer>
                 <Star />
