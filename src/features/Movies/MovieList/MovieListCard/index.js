@@ -66,7 +66,7 @@ export const MovieListCard = () => {
         const genres = movie.genre_ids?.map((id) => GENRES[id]).filter(Boolean);
 
         return (
-          <MovieTile key={movie.id}>
+          <MovieTile key={movie.id} to={`${movie.id}`}>
             {movie.poster_path ? (
               <Poster
                 src={`${IMAGE_BASE_URL}${movie.poster_path}`}

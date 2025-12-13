@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as StarSvg } from "../../../../images/shape-star.svg";
 
-export const MovieTile = styled.div`
+export const MovieTile = styled(Link)`
+  text-decoration: none;
+  color: inherit;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.effects.tileShadow};
   border-radius: 5px;
