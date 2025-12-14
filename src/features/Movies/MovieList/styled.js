@@ -45,3 +45,9 @@ export const Container = styled.div`
     gap: 16px;
   }
 `;
+
+export const SpinnerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  min-height: 400px;
+`;

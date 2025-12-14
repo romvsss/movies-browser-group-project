@@ -1,11 +1,3 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchPopularMovies,
-  selectMovieList,
-  selectStatus,
-  selectPage,
-} from "../../movieSlice";
 import {
   MovieTile,
   Poster,
@@ -46,19 +38,7 @@ const GENRES = {
   37: "Western",
 };
 
-export const MovieListCard = () => {
-  const dispatch = useDispatch();
-  const movies = useSelector(selectMovieList);
-  const status = useSelector(selectStatus);
-  const page = useSelector(selectPage);
-
-  useEffect(() => {
-    dispatch(fetchPopularMovies(page));
-  }, [dispatch, page]);
-
-  if (status === "loading") return <p>Loading...</p>;
-  if (status === "error") return <p>Ups! Nie udało się pobrać danych.</p>;
-
+export const MovieListCard = ({ movies }) => {
   return (
     <>
       {movies.map((movie) => {
@@ -66,7 +46,7 @@ export const MovieListCard = () => {
         const genres = movie.genre_ids?.map((id) => GENRES[id]).filter(Boolean);
 
         return (
-          <MovieTile key={movie.id} to={`${movie.id}`}>
+          <MovieTile key={movie.id} to={`/movies/${movie.id}`}>
             {movie.poster_path ? (
               <Poster
                 src={`${IMAGE_BASE_URL}${movie.poster_path}`}
@@ -83,7 +63,7 @@ export const MovieListCard = () => {
               <Year>{year}</Year>
 
               <GenresWrapper>
-                {genres.slice().map((genre) => (
+                {genres.map((genre) => (
                   <Genre key={genre}>{genre}</Genre>
                 ))}
               </GenresWrapper>

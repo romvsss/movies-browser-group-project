@@ -187,3 +187,9 @@ export const Votes = styled.p`
   line-height: 150%;
   margin-bottom: 0px;
 `;
+
+export const SpinnerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+`;
