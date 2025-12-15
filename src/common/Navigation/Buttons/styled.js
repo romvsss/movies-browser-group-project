@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const activeClassName = "active";
-
 export const CenterWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -32,7 +30,7 @@ export const StyledButton = styled(NavLink)`
   gap: 5px;
   line-height: 100%;
 
-  &.${activeClassName} {
+  &.active  {
     border: 2px solid ${({ theme }) => theme.colors.white};
   }
 
@@ -51,7 +49,7 @@ export const StyledButton = styled(NavLink)`
     font-size: 12px;
     padding: 10px 12px;
 
-    &.${activeClassName} {
+    &.active  {
       border: 1px solid ${({ theme }) => theme.colors.white};
     }
   }
