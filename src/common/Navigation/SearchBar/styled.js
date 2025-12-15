@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as SearchIconSVG } from "./search.svg";
+import { ReactComponent as SearchIconSVG } from "../../../images/search.svg";
 
 export const RightWrapper = styled.div`
   margin-left: auto;
