@@ -86,5 +86,7 @@ export const selectMovieCredits = (state) =>
   selectMoviesState(state).movieCredits;
 export const selectDetailsStatus = (state) =>
   selectMoviesState(state).detailsStatus;
+export const selectTotalResults = (state) =>
+  selectMoviesState(state).totalResults;
 
 export default moviesSlice.reducer;

@@ -7,11 +7,13 @@ import {
   selectMovieList,
   selectStatus,
   selectTotalPages,
+  selectTotalResults,
 } from "../movieSlice";
 import { StyledHeader, Container, Wrapper, SpinnerWrapper } from "./styled";
 import { MovieListCard } from "./MovieListCard";
-import { StyledSpinner } from "../../../common/Navigation/SearchBar/Content/Loading/styled";
-import { Error } from "../../../common/Navigation/SearchBar/Content/Error/index";
+import { StyledSpinner } from "../../../common/Loading/styled";
+import { Error } from "../../../common/Error/index";
+import { NoResults } from "../../../common/NoResults/index";
 import { Pagination } from "../../../common/Pagination";
 
 export const MovieList = () => {
@@ -27,6 +29,7 @@ export const MovieList = () => {
   const movies = useSelector(selectMovieList);
   const status = useSelector(selectStatus);
   const totalPages = useSelector(selectTotalPages);
+  const totalResults = useSelector(selectTotalResults);
   const query = searchParams.get("query");
 
   useEffect(() => {
@@ -36,6 +39,8 @@ export const MovieList = () => {
       dispatch(fetchPopularMovies(page));
     }
   }, [dispatch, query, page]);
+
+  const isNoResults = status === "success" && query && totalResults === 0;
 
   const onPageChange = (newPage) => {
     if (newPage > 0 && newPage <= totalPages) {
@@ -50,7 +55,18 @@ export const MovieList = () => {
   return (
     <Wrapper>
       {(status === "loading" || status === "success") && (
-        <StyledHeader>Popular movies</StyledHeader>
+        <StyledHeader>
+          {query ? (
+            <>
+              Search results for "{query}"
+              {status === "success" && totalResults > 0 && (
+                <> ({totalResults})</>
+              )}
+            </>
+          ) : (
+            "Popular movies"
+          )}
+        </StyledHeader>
       )}
 
       {status === "loading" && (
@@ -61,15 +77,21 @@ export const MovieList = () => {
 
       {status === "success" && (
         <>
-          <Container>
-            <MovieListCard movies={movies} />
-          </Container>
+          {isNoResults ? (
+            <NoResults query={query} />
+          ) : (
+            <>
+              <Container>
+                <MovieListCard movies={movies} />
+              </Container>
 
-          <Pagination
-            page={page}
-            totalPages={totalPages > 500 ? 500 : totalPages}
-            onPageChange={onPageChange}
-          />
+              <Pagination
+                page={page}
+                totalPages={totalPages > 500 ? 500 : totalPages}
+                onPageChange={onPageChange}
+              />
+            </>
+          )}
         </>
       )}
     </Wrapper>
