@@ -1,5 +1,5 @@
 import { call, put, takeLatest, delay, all } from "redux-saga/effects";
-import { getPopularMovies, getMovieDetails, getMovieCredits } from "../../core/api";
+import { getPopularMovies, getMovieDetails, getMovieCredits, searchMovies } from "../../core/api";
 import {
   fetchPopularMovies,
   fetchPopularMoviesSuccess,
@@ -7,6 +7,9 @@ import {
   fetchMovieDetails,
   fetchMovieDetailsSuccess,
   fetchMovieDetailsError,
+  fetchSearchMovies,
+  fetchSearchMoviesSuccess,
+  fetchSearchMoviesError,
 } from "./movieSlice";
 
 // Worker dla Listy
@@ -34,8 +37,21 @@ function* fetchMovieDetailsHandler({ payload: id }) {
   }
 }
 
+// Worker dla Wyszukiwania filmów
+function* fetchSearchMoviesHandler({ payload }) {
+  const { query, page } = payload; 
+  try {
+    yield delay(500);
+    const movies = yield call(searchMovies, query, page);
+    yield put(fetchSearchMoviesSuccess(movies));
+  } catch (error) {
+    yield put(fetchSearchMoviesError());
+  }
+}
+
 // Watcher
 export function* moviesSaga() {
   yield takeLatest(fetchPopularMovies.type, fetchPopularMoviesHandler);
   yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
+  yield takeLatest(fetchSearchMovies.type, fetchSearchMoviesHandler);
 }
