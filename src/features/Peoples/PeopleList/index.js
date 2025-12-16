@@ -1,12 +1,32 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import {
+  fetchPopularPeople,
+  fetchSearchPeople,
+} from "../peopleSlice";
 
 export const PeopleList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const searchParams = new URLSearchParams(location.search);
+  const page = searchParams.get("page")
+    ? parseInt(searchParams.get("page"))
+    : 1;
+
+  const query = searchParams.get("query");
+
   const people = useSelector((state) => state.people.peopleList);
   const status = useSelector((state) => state.people.status);
+
+  useEffect(() => {
+    if (query) {
+      dispatch(fetchSearchPeople({ query, page }));
+    } else {
+      dispatch(fetchPopularPeople(page));
+    }
+  }, [dispatch, query, page]);
 
   if (status === "loading") {
     return <p>Loading...</p>;
