@@ -11,7 +11,7 @@ export const MovieTile = styled(Link)`
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   overflow: hidden;
   height: 100%;
 
@@ -96,7 +96,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.woodsmoke};
   margin: 0;
   font-weight: 500;
   font-size: 22px;
