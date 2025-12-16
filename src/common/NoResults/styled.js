@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as Picture } from "./Picture.svg";
+import { ReactComponent as Picture } from "../../images/Picture.svg";
 
 export const Wrapper = styled.div`
 display: grid;
@@ -7,20 +7,6 @@ display: grid;
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     margin-top: 32px;
-}
-`;
-
-export const LoadingHeader = styled.h2`
-padding: 8px, 16px;
-margin-left: 0px;
-margin-top: 56px;
-font-weight: 600 bold;
-font-size: 36px;
-
-@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
-    margin-top: 23px;
-    margin-left: 16px;
-    font-size: 24px;
 }
 `;
 

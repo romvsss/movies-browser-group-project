@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { ReactComponent as Spinner } from "./spinner.svg";
+import { ReactComponent as Spinner } from "../../images/spinner.svg";
 
 const rotate = keyframes`
 to {
@@ -26,18 +26,5 @@ height: auto;
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     margin-top: 106px;
-}
-`;
-export const LoadingHeader = styled.h2`
-padding: 8px, 16px;
-margin-left: 0px;
-margin-top: 56px;
-font-weight: 600 bold;
-font-size: 36px;
-
-@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
-    margin-top: 23px;
-    margin-left: 0px;
-    font-size: 24px;
 }
 `;
