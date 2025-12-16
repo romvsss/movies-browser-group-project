@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   fetchPopularMovies,
+  fetchSearchMovies,
   selectMovieList,
   selectStatus,
   selectTotalPages,
@@ -19,15 +20,22 @@ export const MovieList = () => {
   const navigate = useNavigate();
 
   const searchParams = new URLSearchParams(location.search);
-  const page = searchParams.get("page") ? parseInt(searchParams.get("page")) : 1;
+  const page = searchParams.get("page")
+    ? parseInt(searchParams.get("page"))
+    : 1;
 
   const movies = useSelector(selectMovieList);
   const status = useSelector(selectStatus);
   const totalPages = useSelector(selectTotalPages);
+  const query = searchParams.get("query");
 
   useEffect(() => {
-    dispatch(fetchPopularMovies(page));
-  }, [dispatch, page]);
+    if (query) {
+      dispatch(fetchSearchMovies({ query, page }));
+    } else {
+      dispatch(fetchPopularMovies(page));
+    }
+  }, [dispatch, query, page]);
 
   const onPageChange = (newPage) => {
     if (newPage > 0 && newPage <= totalPages) {
