@@ -71,12 +71,20 @@ export const MovieListCard = ({ movies }) => {
               <RatingContainer>
                 <Star />
                 <Rate>
-                  {movie.vote_average.toLocaleString("pl-PL", {
-                    minimumFractionDigits: 1,
-                    maximumFractionDigits: 1,
-                  })}
+                  {movie.vote_average === 0
+                    ? ""
+                    : `${movie.vote_average.toLocaleString("pl-PL", {
+                        minimumFractionDigits: 1,
+                        maximumFractionDigits: 1,
+                      })}`}
                 </Rate>
-                <Votes>{movie.vote_count}</Votes>
+                <Votes>
+                  {movie.vote_count === 0
+                    ? "No votes yet"
+                    : `${movie.vote_count} ${
+                        movie.vote_count === 1 ? "vote" : "votes"
+                      }`}
+                </Votes>
               </RatingContainer>
             </HeaderContainer>
           </MovieTile>
