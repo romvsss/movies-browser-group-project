@@ -142,6 +142,7 @@ export const GenresWrapper = styled.div`
 `;
 
 export const Genre = styled.p`
+  color: ${({ theme }) => theme.colors.woodsmoke};
   background-color: ${({ theme }) => theme.colors.mystic};
   margin: 0;
   border-radius: 5px;
@@ -173,7 +174,7 @@ export const Star = styled(StarSvg)`
 `;
 
 export const Rate = styled.p`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.woodsmoke};
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
