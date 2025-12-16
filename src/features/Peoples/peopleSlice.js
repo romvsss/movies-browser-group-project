@@ -81,5 +81,7 @@ export const selectPage = (state) => selectPeopleState(state).page;
 export const selectPersonDetails = (state) => selectPeopleState(state).personDetails;
 export const selectPersonCredits = (state) => selectPeopleState(state).personCredits;
 export const selectDetailsStatus = (state) => selectPeopleState(state).detailsStatus;
+export const selectTotalPages = (state) => selectPeopleState(state).totalPages;
+export const selectTotalResults = (state) => selectPeopleState(state).totalResults;
 
 export default peopleSlice.reducer;
