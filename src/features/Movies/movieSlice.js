@@ -9,7 +9,7 @@ const moviesSlice = createSlice({
     page: 1,
     totalPages: 0,
     totalResults: 0,
-    
+
     // Stan dla Szczegółów Filmu
     movieDetails: null,
     movieCredits: null,
@@ -43,6 +43,21 @@ const moviesSlice = createSlice({
     fetchMovieDetailsError: (state) => {
       state.detailsStatus = "error";
     },
+
+    // --- SEARCH MOVIES ---
+    fetchSearchMovies: (state, { payload }) => {
+      state.status = "loading";
+      state.page = payload.page;
+    },
+    fetchSearchMoviesSuccess: (state, { payload }) => {
+      state.status = "success";
+      state.movieList = payload.results;
+      state.totalPages = payload.total_pages;
+      state.totalResults = payload.total_results;
+    },
+    fetchSearchMoviesError: (state) => {
+      state.status = "error";
+    },
   },
 });
 
@@ -53,6 +68,9 @@ export const {
   fetchMovieDetails,
   fetchMovieDetailsSuccess,
   fetchMovieDetailsError,
+  fetchSearchMovies,
+  fetchSearchMoviesSuccess,
+  fetchSearchMoviesError,
 } = moviesSlice.actions;
 
 const selectMoviesState = (state) => state.movies;
@@ -62,8 +80,11 @@ export const selectStatus = (state) => selectMoviesState(state).status;
 export const selectPage = (state) => selectMoviesState(state).page;
 export const selectTotalPages = (state) => selectMoviesState(state).totalPages;
 
-export const selectMovieDetails = (state) => selectMoviesState(state).movieDetails;
-export const selectMovieCredits = (state) => selectMoviesState(state).movieCredits;
-export const selectDetailsStatus = (state) => selectMoviesState(state).detailsStatus;
+export const selectMovieDetails = (state) =>
+  selectMoviesState(state).movieDetails;
+export const selectMovieCredits = (state) =>
+  selectMoviesState(state).movieCredits;
+export const selectDetailsStatus = (state) =>
+  selectMoviesState(state).detailsStatus;
 
 export default moviesSlice.reducer;
