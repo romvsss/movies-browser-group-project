@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { ReactComponent as VectorSvg } from "./vector.svg"; // Zaraz stworzymy ten plik
+import { ReactComponent as VectorSvg } from "../../images/vector.svg";
 
 export const Wrapper = styled.div`
   display: flex;
