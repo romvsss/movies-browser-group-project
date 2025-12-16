@@ -23,13 +23,13 @@ export const Button = styled.button`
   border: none;
   border-radius: 5px;
   background: ${({ theme }) => theme.colors.pattensBlue};
-  color: ${({ theme }) => theme.colors.scienceBlue};
+  color: ${({ theme }) => theme.colors.mineShaft};
   cursor: pointer;
   transition: 0.2s;
 
   &:disabled {
     background: ${({ theme }) => theme.colors.mystic};
-    color: ${({ theme }) => theme.colors.waterloo};
+    color: ${({ theme }) => theme.colors.woodsmoke};
     cursor: default;
   }
 
@@ -72,7 +72,7 @@ export const Number = styled.span`
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.woodsmoke};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     font-size: 10px;
