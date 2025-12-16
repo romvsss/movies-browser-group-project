@@ -31,6 +31,20 @@ const peopleSlice = createSlice({
       state.status = "error";
     },
 
+    // --- SEARCH PEOPLE ---
+    fetchSearchPeople: (state) => {
+      state.status = "loading";
+    },
+    fetchSearchPeopleSuccess: (state, { payload: people }) => {
+      state.status = "success";
+      state.peopleList = people.results;
+      state.totalPages = people.total_pages;
+      state.totalResults = people.total_results;
+    },
+    fetchSearchPeopleError: (state) => {
+      state.status = "error";
+    },
+
     // --- PROFIL ---
     fetchPersonDetails: (state) => {
       state.detailsStatus = "loading";
@@ -50,6 +64,9 @@ export const {
   fetchPopularPeople,
   fetchPopularPeopleSuccess,
   fetchPopularPeopleError,
+  fetchSearchPeople,
+  fetchSearchPeopleSuccess,
+  fetchSearchPeopleError,
   fetchPersonDetails,
   fetchPersonDetailsSuccess,
   fetchPersonDetailsError,
