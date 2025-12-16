@@ -60,6 +60,7 @@ const selectMoviesState = (state) => state.movies;
 export const selectMovieList = (state) => selectMoviesState(state).movieList;
 export const selectStatus = (state) => selectMoviesState(state).status;
 export const selectPage = (state) => selectMoviesState(state).page;
+export const selectTotalPages = (state) => selectMoviesState(state).totalPages;
 
 export const selectMovieDetails = (state) => selectMoviesState(state).movieDetails;
 export const selectMovieCredits = (state) => selectMoviesState(state).movieCredits;
