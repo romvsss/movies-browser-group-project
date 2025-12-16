@@ -12,7 +12,7 @@ export const theme = {
     mystic: "#E4E6F0",
     silver: "#C4C4C4",
     waterloo: "#7E839A",
-    mineShaft:"#333333",
+    mineShaft: "#333333",
     woodsmoke: "#18181B",
     black: "#000000",
     candlelight: "#FCD420",
