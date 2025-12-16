@@ -70,8 +70,12 @@ export const MovieListCard = ({ movies }) => {
 
               <RatingContainer>
                 <Star />
-                <Rate>{movie.vote_average.toFixed(1)}</Rate>
-                <span>/</span>
+                <Rate>
+                  {movie.vote_average.toLocaleString("pl-PL", {
+                    minimumFractionDigits: 1,
+                    maximumFractionDigits: 1,
+                  })}
+                </Rate>
                 <Votes>{movie.vote_count}</Votes>
               </RatingContainer>
             </HeaderContainer>
