@@ -4,7 +4,9 @@ import { useLocation } from "react-router-dom";
 import {
   fetchPopularPeople,
   fetchSearchPeople,
+  selectTotalResults,
 } from "../peopleSlice";
+import { StyledHeader } from "./styled";
 
 export const PeopleList = () => {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ export const PeopleList = () => {
 
   const people = useSelector((state) => state.people.peopleList);
   const status = useSelector((state) => state.people.status);
+  const totalResults = useSelector(selectTotalResults);
 
   useEffect(() => {
     if (query) {
@@ -37,12 +40,28 @@ export const PeopleList = () => {
   }
 
   return (
-    <div style={{ display: "grid", gap: 16 }}>
-      {people.map((person) => (
-        <div key={person.id}>
-          <h3>{person.name}</h3>
-        </div>
-      ))}
-    </div>
+    <>
+      {(status === "loading" || status === "success") && (
+        <StyledHeader>
+          {query ? (
+            <>
+              Search results for "{query}"
+              {status === "success" && totalResults > 0 && (
+                <> ({totalResults})</>
+              )}
+            </>
+          ) : (
+            "Popular people"
+          )}
+        </StyledHeader>
+      )}
+      <div style={{ display: "grid", gap: 16 }}>
+        {people.map((person) => (
+          <div key={person.id}>
+            <h3>{person.name}</h3>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
