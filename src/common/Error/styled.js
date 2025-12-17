@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import { ReactComponent as DangerIcon } from "../../images/danger.svg";
 
+export const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 180px;
   padding: 0 20px;
 `;
 
@@ -35,7 +41,7 @@ export const Paragraph = styled.p`
   line-height: 1.3;
   margin: 0 0 24px 0;
   color: ${({ theme }) => theme.colors.black};
-  
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     font-size: 16px;
   }
@@ -49,7 +55,7 @@ export const Button = styled.button`
   padding: 16px 24px;
   font-weight: 700;
   font-size: 14px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   cursor: pointer;
   transition: 0.3s;
 

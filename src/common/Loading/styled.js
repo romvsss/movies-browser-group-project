@@ -7,7 +7,7 @@ to {
 }
 `;
 
-export const Wrapper = styled.div`
+export const SpinnerWrapper = styled.div`
 display: grid;
 
 

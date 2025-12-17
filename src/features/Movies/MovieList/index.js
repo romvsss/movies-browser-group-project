@@ -9,9 +9,9 @@ import {
   selectTotalPages,
   selectTotalResults,
 } from "../movieSlice";
-import { StyledHeader, Container, Wrapper, SpinnerWrapper } from "./styled";
+import { StyledHeader, Container, Wrapper } from "./styled";
 import { MovieListCard } from "./MovieListCard";
-import { StyledSpinner } from "../../../common/Loading/styled";
+import { SpinnerWrapper, StyledSpinner } from "../../../common/Loading/styled";
 import { Error } from "../../../common/Error/index";
 import { NoResults } from "../../../common/NoResults/index";
 import { Pagination } from "../../../common/Pagination";
@@ -57,12 +57,16 @@ export const MovieList = () => {
       {(status === "loading" || status === "success") && (
         <StyledHeader>
           {query ? (
-            <>
-              Search results for "{query}"
-              {status === "success" && totalResults > 0 && (
-                <> ({totalResults})</>
-              )}
-            </>
+            status === "success" && totalResults === 0 ? (
+              <>Sorry, there are no results for "{query}"</>
+            ) : (
+              <>
+                Search results for "{query}"
+                {status === "success" && totalResults > 0 && (
+                  <> ({totalResults})</>
+                )}
+              </>
+            )
           ) : (
             "Popular movies"
           )}

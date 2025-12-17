@@ -1,9 +1,9 @@
-import { StyledSpinner, Wrapper } from "./styled";
+import { StyledSpinner, SpinnerWrapper} from "./styled";
 
 export const Loading = () => (
-  <Wrapper>
+  <SpinnerWrapper>
     <StyledSpinner />
-  </Wrapper>
+  </SpinnerWrapper>
 );
 
 export default Loading;

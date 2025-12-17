@@ -8,6 +8,8 @@ import {
   selectTotalPages,
 } from "../peopleSlice";
 import { StyledHeader } from "./styled";
+import { StyledSpinner, SpinnerWrapper } from "../../../common/Loading/styled";
+import { Error } from "../../../common/Error/index";
 import { NoResults } from "../../../common/NoResults/index";
 import { Pagination } from "../../../common/Pagination";
 
@@ -43,8 +45,8 @@ export const PeopleList = () => {
     }
   };
 
-  if (status === "loading") {
-    return <p>Loading...</p>;
+  if (status === "error") {
+    return <Error />;
   }
 
   return (
@@ -52,16 +54,26 @@ export const PeopleList = () => {
       {(status === "loading" || status === "success") && (
         <StyledHeader>
           {query ? (
-            <>
-              Search results for "{query}"
-              {status === "success" && totalResults > 0 && (
-                <> ({totalResults})</>
-              )}
-            </>
+            status === "success" && totalResults === 0 ? (
+              <>Sorry, there are no results for "{query}"</>
+            ) : (
+              <>
+                Search results for "{query}"
+                {status === "success" && totalResults > 0 && (
+                  <> ({totalResults})</>
+                )}
+              </>
+            )
           ) : (
             "Popular people"
           )}
         </StyledHeader>
+      )}
+
+      {status === "loading" && (
+        <SpinnerWrapper>
+          <StyledSpinner />
+        </SpinnerWrapper>
       )}
 
       {status === "success" && (
@@ -77,15 +89,16 @@ export const PeopleList = () => {
                   </div>
                 ))}
               </div>
+
+              <Pagination
+                page={page}
+                totalPages={totalPages > 500 ? 500 : totalPages}
+                onPageChange={onPageChange}
+              />
             </>
           )}
         </>
       )}
-      <Pagination
-        page={page}
-        totalPages={totalPages > 500 ? 500 : totalPages}
-        onPageChange={onPageChange}
-      />
     </>
   );
 };
