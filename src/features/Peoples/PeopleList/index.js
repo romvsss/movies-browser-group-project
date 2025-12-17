@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   fetchPopularPeople,
   fetchSearchPeople,
   selectTotalResults,
+  selectTotalPages,
 } from "../peopleSlice";
 import { StyledHeader } from "./styled";
 import { NoResults } from "../../../common/NoResults/index";
+import { Pagination } from "../../../common/Pagination";
 
 export const PeopleList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const searchParams = new URLSearchParams(location.search);
   const page = searchParams.get("page")
@@ -22,6 +25,7 @@ export const PeopleList = () => {
 
   const people = useSelector((state) => state.people.peopleList);
   const status = useSelector((state) => state.people.status);
+  const totalPages = useSelector(selectTotalPages);
   const totalResults = useSelector(selectTotalResults);
   const isNoResults = status === "success" && query && totalResults === 0;
 
@@ -32,6 +36,12 @@ export const PeopleList = () => {
       dispatch(fetchPopularPeople(page));
     }
   }, [dispatch, query, page]);
+
+  const onPageChange = (newPage) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      navigate(`?page=${newPage}`);
+    }
+  };
 
   if (status === "loading") {
     return <p>Loading...</p>;
@@ -71,6 +81,11 @@ export const PeopleList = () => {
           )}
         </>
       )}
+      <Pagination
+        page={page}
+        totalPages={totalPages > 500 ? 500 : totalPages}
+        onPageChange={onPageChange}
+      />
     </>
   );
 };
