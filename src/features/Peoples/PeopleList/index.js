@@ -7,6 +7,7 @@ import {
   selectTotalResults,
 } from "../peopleSlice";
 import { StyledHeader } from "./styled";
+import { NoResults } from "../../../common/NoResults/index";
 
 export const PeopleList = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export const PeopleList = () => {
   const people = useSelector((state) => state.people.peopleList);
   const status = useSelector((state) => state.people.status);
   const totalResults = useSelector(selectTotalResults);
+  const isNoResults = status === "success" && query && totalResults === 0;
 
   useEffect(() => {
     if (query) {
@@ -33,10 +35,6 @@ export const PeopleList = () => {
 
   if (status === "loading") {
     return <p>Loading...</p>;
-  }
-
-  if (!people || people.length === 0) {
-    return <p>Brak wyników</p>;
   }
 
   return (
@@ -55,13 +53,24 @@ export const PeopleList = () => {
           )}
         </StyledHeader>
       )}
-      <div style={{ display: "grid", gap: 16 }}>
-        {people.map((person) => (
-          <div key={person.id}>
-            <h3>{person.name}</h3>
-          </div>
-        ))}
-      </div>
+
+      {status === "success" && (
+        <>
+          {isNoResults ? (
+            <NoResults query={query} />
+          ) : (
+            <>
+              <div style={{ display: "grid", gap: 16 }}>
+                {people.map((person) => (
+                  <div key={person.id}>
+                    <h3>{person.name}</h3>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };
