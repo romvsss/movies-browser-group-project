@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { ReactComponent as SearchIconSVG } from "./search.svg";
+import { ReactComponent as SearchIconSVG } from "../../../images/search.svg";
 
 export const RightWrapper = styled.div`
   margin-left: auto;
   display: flex;
   align-items: center;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
     margin-left: 0;
     justify-content: center;
     width: 100%;
@@ -22,17 +22,14 @@ export const SearchWrapper = styled.div`
   padding: 12px 24px;
   gap: 16px;
   width: 100%;
-  max-width: 432px;
+  min-width: 432px;
   height: 48px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
     padding: 10px 16px;
     gap: 8px;
     height: 44px;
-    max-width: 288px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    min-width: 288px;
     max-width: none;
   }
 `;

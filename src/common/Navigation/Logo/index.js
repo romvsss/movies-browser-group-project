@@ -1,12 +1,12 @@
-import { LeftWrapper, LogoWrapper, VideoIcon, PageTitle } from "./styled";
+import { LeftWrapper, LogoLink , VideoIcon, PageTitle } from "./styled";
 
 export const Logo = () => (
   <>
     <LeftWrapper>
-      <LogoWrapper>
+      <LogoLink to="/">
         <VideoIcon />
         <PageTitle>Movies Browser</PageTitle>
-      </LogoWrapper>
+      </LogoLink >
     </LeftWrapper>
   </>
 );
