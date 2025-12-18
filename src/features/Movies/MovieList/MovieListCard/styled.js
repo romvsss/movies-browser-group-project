@@ -11,7 +11,7 @@ export const MovieTile = styled(Link)`
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   overflow: hidden;
   height: 100%;
 
@@ -96,7 +96,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.woodsmoke};
   margin: 0;
   font-weight: 500;
   font-size: 22px;
@@ -142,6 +142,7 @@ export const GenresWrapper = styled.div`
 `;
 
 export const Genre = styled.p`
+  color: ${({ theme }) => theme.colors.woodsmoke};
   background-color: ${({ theme }) => theme.colors.mystic};
   margin: 0;
   border-radius: 5px;
@@ -173,7 +174,7 @@ export const Star = styled(StarSvg)`
 `;
 
 export const Rate = styled.p`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.woodsmoke};
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
