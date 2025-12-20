@@ -24,6 +24,7 @@ export const theme = {
     mobileMax: 767,
     tabletVerticalMax: 991,
     tabletHorizontalMax: 1199,
+    desktopMax: 1366,
   },
 
   effects: {
