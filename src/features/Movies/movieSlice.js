@@ -9,6 +9,8 @@ const moviesSlice = createSlice({
     page: 1,
     totalPages: 0,
     totalResults: 0,
+    genres: {},
+    genresStatus: "initial",
 
     // Stan dla Szczegółów Filmu
     movieDetails: null,
@@ -58,6 +60,18 @@ const moviesSlice = createSlice({
     fetchSearchMoviesError: (state) => {
       state.status = "error";
     },
+
+    // --- GENRES ---
+    fetchGenres: (state) => {
+      state.genresStatus = "loading";
+    },
+    fetchGenresSuccess: (state, { payload }) => {
+      state.genresStatus = "success";
+      state.genres = payload;
+    },
+    fetchGenresError: (state) => {
+      state.genresStatus = "error";
+    },
   },
 });
 
@@ -71,6 +85,9 @@ export const {
   fetchSearchMovies,
   fetchSearchMoviesSuccess,
   fetchSearchMoviesError,
+  fetchGenres,
+  fetchGenresSuccess,
+  fetchGenresError,
 } = moviesSlice.actions;
 
 const selectMoviesState = (state) => state.movies;
@@ -79,6 +96,7 @@ export const selectMovieList = (state) => selectMoviesState(state).movieList;
 export const selectStatus = (state) => selectMoviesState(state).status;
 export const selectPage = (state) => selectMoviesState(state).page;
 export const selectTotalPages = (state) => selectMoviesState(state).totalPages;
+export const selectGenres = (state) => selectMoviesState(state).genres;
 
 export const selectMovieDetails = (state) =>
   selectMoviesState(state).movieDetails;

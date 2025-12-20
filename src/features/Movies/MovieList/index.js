@@ -4,10 +4,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import {
   fetchPopularMovies,
   fetchSearchMovies,
+  fetchGenres,
   selectMovieList,
   selectStatus,
   selectTotalPages,
   selectTotalResults,
+  selectGenres,
 } from "../movieSlice";
 import { StyledHeader, Container, Wrapper } from "./styled";
 import { MovieListCard } from "./MovieListCard";
@@ -30,6 +32,7 @@ export const MovieList = () => {
   const status = useSelector(selectStatus);
   const totalPages = useSelector(selectTotalPages);
   const totalResults = useSelector(selectTotalResults);
+  const genresMap = useSelector(selectGenres);
   const query = searchParams.get("query");
 
   useEffect(() => {
@@ -39,6 +42,10 @@ export const MovieList = () => {
       dispatch(fetchPopularMovies(page));
     }
   }, [dispatch, query, page]);
+
+  useEffect(() => {
+    dispatch(fetchGenres());
+  }, [dispatch]);
 
   const isNoResults = status === "success" && query && totalResults === 0;
 
@@ -86,7 +93,7 @@ export const MovieList = () => {
           ) : (
             <>
               <Container>
-                <MovieListCard movies={movies} />
+                <MovieListCard movies={movies} genresMap={genresMap} />
               </Container>
 
               <Pagination

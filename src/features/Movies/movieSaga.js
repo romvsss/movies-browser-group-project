@@ -1,5 +1,5 @@
 import { call, put, takeLatest, delay, all } from "redux-saga/effects";
-import { getPopularMovies, getMovieDetails, getMovieCredits, searchMovies } from "../../core/api";
+import { getPopularMovies, getMovieDetails, getMovieCredits, searchMovies,  getMovieGenres } from "../../core/api";
 import {
   fetchPopularMovies,
   fetchPopularMoviesSuccess,
@@ -10,6 +10,9 @@ import {
   fetchSearchMovies,
   fetchSearchMoviesSuccess,
   fetchSearchMoviesError,
+  fetchGenres,
+  fetchGenresSuccess,
+  fetchGenresError,
 } from "./movieSlice";
 
 // Worker dla Listy
@@ -49,9 +52,26 @@ function* fetchSearchMoviesHandler({ payload }) {
   }
 }
 
+// Worker dla Wyszukiwania genre
+function* fetchGenresHandler() {
+  try {
+    const data = yield call(getMovieGenres);
+    const genresMap = {};
+    data.genres.forEach((genre) => {
+      genresMap[genre.id] = genre.name;
+    });
+
+    yield put(fetchGenresSuccess(genresMap));
+  } catch (error) {
+    yield put(fetchGenresError());
+  }
+}
+
+
 // Watcher
 export function* moviesSaga() {
   yield takeLatest(fetchPopularMovies.type, fetchPopularMoviesHandler);
   yield takeLatest(fetchMovieDetails.type, fetchMovieDetailsHandler);
   yield takeLatest(fetchSearchMovies.type, fetchSearchMoviesHandler);
+  yield takeLatest(fetchGenres.type, fetchGenresHandler);
 }

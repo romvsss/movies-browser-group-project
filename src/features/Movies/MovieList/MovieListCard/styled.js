@@ -136,8 +136,11 @@ export const GenresWrapper = styled.div`
   gap: 8px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
-    width: 126px;
     column-gap: 8px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileSMax}px) {
+    gap: 4px;
   }
 `;
 
@@ -171,6 +174,13 @@ export const RatingContainer = styled.div`
 export const Star = styled(StarSvg)`
   width: 24px;
   height: 24px;
+  margin-bottom: 4px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 2px;
+  }
 `;
 
 export const Rate = styled.p`
@@ -178,7 +188,15 @@ export const Rate = styled.p`
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
-  margin-bottom: 0px;
+  margin: 0px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileSMax}px) {
+    font-size: 11px;
+  }
 `;
 
 export const Votes = styled.p`
@@ -186,7 +204,15 @@ export const Votes = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
-  margin-bottom: 0px;
+  margin: 0px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileSMax}px) {
+    font-size: 11px;
+  }
 `;
 
 export const SpinnerWrapper = styled.div`
