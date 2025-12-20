@@ -7,7 +7,8 @@ import {
   selectTotalResults,
   selectTotalPages,
 } from "../peopleSlice";
-import { StyledHeader } from "./styled";
+import { StyledHeader, Container } from "./styled";
+import { PeopleListCard } from "./PeopleListCard/index";
 import { StyledSpinner, SpinnerWrapper } from "../../../common/Loading/styled";
 import { Error } from "../../../common/Error/index";
 import { NoResults } from "../../../common/NoResults/index";
@@ -19,16 +20,14 @@ export const PeopleList = () => {
   const navigate = useNavigate();
 
   const searchParams = new URLSearchParams(location.search);
-  const page = searchParams.get("page")
-    ? parseInt(searchParams.get("page"))
-    : 1;
-
+  const page = Number(searchParams.get("page")) || 1;
   const query = searchParams.get("query");
 
   const people = useSelector((state) => state.people.peopleList);
   const status = useSelector((state) => state.people.status);
   const totalPages = useSelector(selectTotalPages);
   const totalResults = useSelector(selectTotalResults);
+
   const isNoResults = status === "success" && query && totalResults === 0;
 
   useEffect(() => {
@@ -41,7 +40,7 @@ export const PeopleList = () => {
 
   const onPageChange = (newPage) => {
     if (newPage > 0 && newPage <= totalPages) {
-      navigate(`?page=${newPage}`);
+      navigate(`?page=${newPage}${query ? `&query=${query}` : ""}`);
     }
   };
 
@@ -51,24 +50,13 @@ export const PeopleList = () => {
 
   return (
     <>
-      {(status === "loading" || status === "success") && (
-        <StyledHeader>
-          {query ? (
-            status === "success" && totalResults === 0 ? (
-              <>Sorry, there are no results for "{query}"</>
-            ) : (
-              <>
-                Search results for "{query}"
-                {status === "success" && totalResults > 0 && (
-                  <> ({totalResults})</>
-                )}
-              </>
-            )
-          ) : (
-            "Popular people"
-          )}
-        </StyledHeader>
-      )}
+      <StyledHeader>
+        {query
+          ? `Search results for "${query}"${
+              totalResults ? ` (${totalResults})` : ""
+            }`
+          : "Popular people"}
+      </StyledHeader>
 
       {status === "loading" && (
         <SpinnerWrapper>
@@ -82,17 +70,15 @@ export const PeopleList = () => {
             <NoResults query={query} />
           ) : (
             <>
-              <div style={{ display: "grid", gap: 16 }}>
+              <Container>
                 {people.map((person) => (
-                  <div key={person.id}>
-                    <h3>{person.name}</h3>
-                  </div>
+                  <PeopleListCard key={person.id} person={person} />
                 ))}
-              </div>
+              </Container>
 
               <Pagination
                 page={page}
-                totalPages={totalPages > 500 ? 500 : totalPages}
+                totalPages={Math.min(totalPages, 500)}
                 onPageChange={onPageChange}
               />
             </>
