@@ -9,7 +9,9 @@ const moviesSlice = createSlice({
     page: 1,
     totalPages: 0,
     totalResults: 0,
-    
+    genres: {},
+    genresStatus: "initial",
+
     // Stan dla Szczegółów Filmu
     movieDetails: null,
     movieCredits: null,
@@ -43,6 +45,33 @@ const moviesSlice = createSlice({
     fetchMovieDetailsError: (state) => {
       state.detailsStatus = "error";
     },
+
+    // --- SEARCH MOVIES ---
+    fetchSearchMovies: (state, { payload }) => {
+      state.status = "loading";
+      state.page = payload.page;
+    },
+    fetchSearchMoviesSuccess: (state, { payload }) => {
+      state.status = "success";
+      state.movieList = payload.results;
+      state.totalPages = payload.total_pages;
+      state.totalResults = payload.total_results;
+    },
+    fetchSearchMoviesError: (state) => {
+      state.status = "error";
+    },
+
+    // --- GENRES ---
+    fetchGenres: (state) => {
+      state.genresStatus = "loading";
+    },
+    fetchGenresSuccess: (state, { payload }) => {
+      state.genresStatus = "success";
+      state.genres = payload;
+    },
+    fetchGenresError: (state) => {
+      state.genresStatus = "error";
+    },
   },
 });
 
@@ -53,6 +82,12 @@ export const {
   fetchMovieDetails,
   fetchMovieDetailsSuccess,
   fetchMovieDetailsError,
+  fetchSearchMovies,
+  fetchSearchMoviesSuccess,
+  fetchSearchMoviesError,
+  fetchGenres,
+  fetchGenresSuccess,
+  fetchGenresError,
 } = moviesSlice.actions;
 
 const selectMoviesState = (state) => state.movies;
@@ -61,9 +96,15 @@ export const selectMovieList = (state) => selectMoviesState(state).movieList;
 export const selectStatus = (state) => selectMoviesState(state).status;
 export const selectPage = (state) => selectMoviesState(state).page;
 export const selectTotalPages = (state) => selectMoviesState(state).totalPages;
+export const selectGenres = (state) => selectMoviesState(state).genres;
 
-export const selectMovieDetails = (state) => selectMoviesState(state).movieDetails;
-export const selectMovieCredits = (state) => selectMoviesState(state).movieCredits;
-export const selectDetailsStatus = (state) => selectMoviesState(state).detailsStatus;
+export const selectMovieDetails = (state) =>
+  selectMoviesState(state).movieDetails;
+export const selectMovieCredits = (state) =>
+  selectMoviesState(state).movieCredits;
+export const selectDetailsStatus = (state) =>
+  selectMoviesState(state).detailsStatus;
+export const selectTotalResults = (state) =>
+  selectMoviesState(state).totalResults;
 
 export default moviesSlice.reducer;
