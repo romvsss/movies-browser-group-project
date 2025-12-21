@@ -16,6 +16,7 @@ export const theme = {
     candlelight: "#FCD420",
     pattensBlue: "#D6E4FF",
     scienceBlue: "#0044CC",
+    Darkergrey: "#4F4F4F",
   },
 
   breakpoints: {

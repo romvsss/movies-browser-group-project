@@ -4,19 +4,32 @@ import { Container,
          TitleRating,
          TitleRatingContent,
          Layout,
-         Star40px,} from "./styled";
+         Star40px,
+         Votes
+        } from "./styled";
 
-export const MovieSection = () => (
-<Container>
+const posterPath = (patch, size = "w780") => patch ? `https://image.tmdb.org/t/p/${size}${patch}` : null;
+
+export const MovieSection = ({ movie }) => (
+<Container poster={posterPath(movie.backdrop_path || movie.poster_path)}>
+                
                 <TitleContainer>
-                    <MovieTitle>Mulan long title</MovieTitle>
+                    <MovieTitle>{movie.title}</MovieTitle>
+                        
                         <TitleRatingContent>
                             <Layout>
                     <TitleRating>
-                    <Star40px />7,8
+                    <Star40px />
+                    {movie.vote_average.toLocaleString("pl-PL", {
+                      minimumFractionDigits: 1,
+                      maximumFractionDigits: 1,
+                   })}
                     </TitleRating>
-                             /10</Layout>
-                    335 votes
+                             /10
+                             </Layout>
+                    <Votes>
+                    {movie.vote_count} votes
+                    </Votes>
                     </TitleRatingContent>
                 </TitleContainer>
             </Container >

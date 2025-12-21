@@ -1,15 +1,17 @@
 import styled from "styled-components";
-import { ReactComponent as CameraIcon } from "../icon.svg";
-import { ReactComponent as StarIcon } from "../shape-star.svg";
+import { ReactComponent as CameraIcon } from "../../../../images/video.svg";
+import { ReactComponent as StarIcon } from "../../../../images/shape-star.svg";
 
 export const MovieTile = styled.article`
 max-width: 1368px;
-height: 544px;
+width: auto;
+height: auto;
 margin: auto;
-margin-bottom: 64px;
+margin-bottom: 40px;
 background-color: ${({ theme }) => theme.colors.white};
 padding: 40px;
 display: grid;
+align-items: start;
 grid-template-columns: auto 1fr;
 grid-template-rows: auto 1fr;
 grid-template-areas:
@@ -19,12 +21,27 @@ grid-column-gap: 40px;
 grid-row-gap: 16px;
 box-shadow: 0px 4px 12px #BAC7D580;
 
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    max-width: 768px;
+    height: auto;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "poster mobile"
+    "story story";
+    grid-column-gap: 24px;
+    grid-row-gap: 16px;
+    margin-bottom: 48px;
+};
+
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     max-width: 288px;
-    height: 400px;
+    height: auto;
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: /*1fr*/ auto auto;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
     grid-template-areas:
     "poster mobile"
     "story story";
@@ -36,32 +53,42 @@ box-shadow: 0px 4px 12px #BAC7D580;
 `;
 
 export const Poster = styled.div`
-aspect-ratio: 3.12 / 4.64;
-width: 100%;
-height: 100%;
+width: 312px;
+aspect-ratio: 312 / 464;
 border-radius: 5px;
-scale: crop;
+overflow: hidden;
 background-color: ${({ theme }) => theme.colors.waterloo};
 background-size: cover;
 background-position: center;
-background-position-x: center;
+background-repeat: no-repeat;
 background-image: ${({ theme }) => theme.effects.tileSHadow};
 display: flex;
 align-items: center;
 justify-content: center;
 grid-area: poster;
 
-/* background-image: url('/path/to/movie/poster.jpg') - na później;*/
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    width: 200px;
+    grid-area: poster;
+};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
 width: 114px;
-height: 169px;
 grid-area: poster;
 }
 `;
 
 export const MobileOnly = styled.div`
-width: 936px;
+width: auto;
+max-width: 100%;
+min-width: 0;
 height: auto;
 gap: 8px;
 display: flex;
@@ -70,22 +97,18 @@ align-items: flex-start;
 flex-wrap: wrap;
 grid-area: mobile;
 
-@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
     width: auto;
-    height: 176px;
+    height: auto;
     display: grid;
     grid-area: mobile;
-}
-`;
+};
 
-export const Description = styled.div`
-
-
-@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
-   width: auto;
-   height: 176px;
-   padding-top: 0;
-   padding-bottom: 0;
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-area: mobile;
 }
 `;
 
@@ -95,6 +118,11 @@ font-weight: 600;
 line-height: 120%;
 letter-spacing: 0px;
 margin-bottom: 24px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    font-size: 24px;
+    margin-bottom: 16px;
+};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     font-size: 16px;
@@ -111,6 +139,14 @@ font-weight: 400;
 line-height: 120%;
 letter-spacing: 0px;
 word-break: break-word;
+margin-bottom: 16px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    word-break: break-word;
+};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     font-size: 13px;
@@ -119,19 +155,17 @@ word-break: break-word;
     letter-spacing: 0px;
     word-break: break-word;
     margin-bottom: 0px;
-    color: ${({ theme }) => theme.colors.Darkergrey};
 }
 `;
 
 export const DataTile = styled.ul`
 width: auto;
-height: 52px;
+height: auto;
 padding: 0;
 display: grid;
-grid-template-columns: 122px 102px;
+grid-template-columns: max-content 1fr;
 column-gap: 8px;
-margin-top: 8px;
-margin-bottom: 4px;
+margin: 0px;;
 list-style: none;
 color: ${({ theme }) => theme.colors.waterloo};
 
@@ -152,6 +186,8 @@ font-size: 18px;
 font-weight: 400;
 line-height: 120%
 letter-spacing 0px;
+justify-self: start;
+white-space: nowrap;
 color: ${({ theme }) => theme.colors.waterloo};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
@@ -161,18 +197,19 @@ color: ${({ theme }) => theme.colors.waterloo};
 
 export const Data = styled.li`
 width: auto;
-height: 22px;
+height: auto;
 font-size: 18px;
 font-weight: 400;
 line-height: 120%
 letter-spacing 0px;
 display: flex;
 align-items: flex-start;
+flex-wrap: wrap;
 color: ${({ theme }) => theme.colors.black};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: auto;
-    height: 16px;
+    height: auto;
     font-size: 12px;
     line-height: 130%;
     letter-spacing: 0px;
@@ -231,7 +268,6 @@ font-size: 14px;
 font-weight: 400;
 line-height: 120%;
 letter-spacing: 0px;
-color: ${({ theme }) => theme.colors.black};
 margin-bottom: 18px;
 margin-top: 8px;
 display: flex;
@@ -246,7 +282,6 @@ align-items: baseline;
     font-size: 13px;
     line-height: 130%;
     letter-spacing: 0px;
-    color: ${({ theme }) => theme.colors.Darkergrey};
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -294,11 +329,21 @@ line-height: 120%;
 letter-spacing: 0px;
 color: ${({ theme }) => theme.colors.black};
 margin-left: 8px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    height: 16px;
+    font-size: 13px;
+    line-height: 130%;
+    color: ${({ theme }) => theme.colors.Darkergrey};
+}
 `;
 
 export const Story = styled.div`
 width: 100%;
 height: auto;
+min-width: 0;
+max-width: 936px;
 font-size: 20px;
 font-weight: 400;
 line-height: 160%;
@@ -306,9 +351,19 @@ letter-spacing: 0px;
 color: ${({ theme }) => theme.colors.black};
 grid-area: story;
 
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    font-size: 18px;
+    line-height: 150%;
+    width: auto;
+    max-width: 700px;
+    height: auto;
+    display: grid;
+    grid-area: story;
+}
+
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: auto;
-    height: 176px;
+    height: auto;
     display: grid;
     grid-area: story;
     font-size: 14px;
@@ -325,8 +380,8 @@ stroke-width: 1.5px;
 `;
 
 export const Star = styled(StarIcon)`
-width: 40px;
-height: 40px;
+width: 24px;
+height: 24px;
 margin-right: 8px;
 vertical-align: middle;
 

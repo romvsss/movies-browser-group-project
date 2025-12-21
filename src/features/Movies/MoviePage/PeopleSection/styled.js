@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as PersonIcon } from "../Person.svg";
+import { ReactComponent as PersonIcon } from "../../../../images/Person.svg";
 
 export const PeopleSection = styled.section`
 max-width: 1368px;
@@ -47,7 +47,7 @@ margin-bottom: 48px;
 
 export const Tile = styled.div`
 width: 208px;
-height: 339px;
+height: auto;
 border-radius: 5px;
 background-color: ${({ theme }) => theme.colors.white};
 box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
@@ -71,6 +71,13 @@ height: 231px;
 border-radius: 5px;
 margin-bottom: 12px;
 
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: 120px;
     height: 178px;
@@ -81,12 +88,13 @@ margin-bottom: 12px;
 
 export const PersonTile = styled.div`
 width: 176px;
-height: 64px;
+height: auto;
 gap: 10px;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+flex-wrap: wrap;
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: 120px;
@@ -97,7 +105,7 @@ justify-content: center;
 
 export const TileName = styled.div`
 width: auto;
-height: 29px;
+height: auto;
 font-size: 22px;
 font-weight: 500;
 line-height: 130%;
@@ -113,7 +121,7 @@ color: ${({ theme }) => theme.colors.black};
 
 export const TileRole = styled.div`
 width: auto;
-height: 27px;
+height: auto;
 font-size: 18px;
 font-weight: 400;
 line-height: 150%;

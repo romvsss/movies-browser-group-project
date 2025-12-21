@@ -18,51 +18,63 @@ import {
          NoMovieIcon,
 } from "./styled";
 
-export const MovieTileSection = () => (
+export const MovieTileSection = ({ movie }) => (
 <MovieTile>
             <Poster>
+              {movie.poster_path ? (
+                <img
+                    src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+                    alt={movie.title}
+                ></img>
+              ) : (
                 <NoMovieIcon />
+              )}
             </Poster>
                 
         
     <MobileOnly>
         
-        <Title>Tytuł</Title>
-        <Year>GetYearFromDate</Year>
+        <Title>{movie.title}</Title>
+        <Year>{movie.release_date?.slice(0, 4)}</Year>
                
         <DataTile>
             <MovieData>Production:</MovieData>
-                <Data>"."</Data>
+                <Data>
+                    {movie.production_countries?.map(c => c.name).join(",")}
+                </Data>
+        </DataTile>
+        <DataTile>
             <MovieData>Release date:</MovieData>
-                <Data>"."</Data>
+                <Data>
+                    {movie.release_date &&
+                           new Date(movie.release_date).toLocaleDateString("pl-PL")}
+                </Data>
         </DataTile>
                 
         <Tags>
-            <Tag>Tag1</Tag>
-            <Tag>Action</Tag>
-            <Tag>Adventure</Tag>
+            {movie.genres?.map(genre => (
+                <Tag key={genre.id}>{genre.name}</Tag>
+            ))} 
         </Tags>
                   
         <RatingContent>
             <Rating>
-                <Star />7,8
+                <Star />
+                 {movie.vote_average.toLocaleString("pl-PL", {
+                      minimumFractionDigits: 1,
+                      maximumFractionDigits: 1,
+                })}
             </Rating>
             <DataMobileOnly>
                 /10 
             </DataMobileOnly>
             <Votes>
-                335 votes
+                {movie.vote_count} votes
             </Votes>
         </RatingContent>
     </MobileOnly>
-
                    
-        <Story>
-         A young Chinese maiden disguises herself as a male warrior in order to save her father. <br />
-         Disguises herself as a male warrior in order to save her father.  
-         A young Chinese maiden disguises herself as a male warrior in order to save her father.
-        </Story>
-                  
+        <Story>{movie.overview}</Story>                  
 </MovieTile>
 );
 

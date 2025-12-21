@@ -2,24 +2,38 @@ import { Wrapper, MovieDetails } from "./styled";
 import MovieSection from "./Container";
 import MovieTileSection from "./MovieTile";
 import Cast from "./PeopleSection";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectMovieList } from "../movieSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMovieDetails,
+         selectMovieDetails,
+         selectMovieCredits,
+         selectDetailsStatus
+ } from "../movieSlice";
 
 export const MoviePage = () => {
   const { id } = useParams();
-  const movies = useSelector(selectMovieList);
-  const movie = movies.find((m) => m.id.toString() === id);
+  const dispatch = useDispatch();
 
-  if (!movie) return <p>Film nie znaleziony</p>;
+  const movie = useSelector(selectMovieDetails);
+  const credits = useSelector(selectMovieCredits);
+  const status = useSelector(selectDetailsStatus);
+
+  useEffect(() => {
+    dispatch(fetchMovieDetails(id));
+  }, [dispatch, id]);
+
+  if (status === "loading") return <div>Loading...</div>;
+  if (status === "error") return <div>Błąd ładowania</div>;
+  if (!movie) return null;
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div >
       <Wrapper>
-            <MovieSection />
+            <MovieSection movie={movie}/>
             <MovieDetails>
-                <MovieTileSection />
-                <Cast />
+                <MovieTileSection movie={movie} />
+                <Cast credits={credits}/>
             </MovieDetails>
         </Wrapper>
     </div>
