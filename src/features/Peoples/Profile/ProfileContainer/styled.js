@@ -144,11 +144,9 @@ color: ${({ theme }) => theme.colors.waterloo};
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: auto;
     height: auto;
-    display: grid;
-    grid-template-columns: max-content auto;
-    grid-template-rows: auto;
-    column-gap: 4px;
-    row-gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 
 }
 `;
@@ -160,7 +158,8 @@ font-weight: 400;
 line-height: 120%
 letter-spacing 0px;
 justify-self: start;
-white-space: nowrap;
+white-space: normal;
+word-break: break-word;
 color: ${({ theme }) => theme.colors.waterloo};
 
  &::before {
@@ -168,7 +167,7 @@ color: ${({ theme }) => theme.colors.waterloo};
   }
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
-     height: 14px;
+     height: auto;
      font-size: 12px;
     
     &::before {
@@ -183,6 +182,9 @@ font-size: 18px;
 font-weight: 400;
 line-height: 120%
 letter-spacing 0px;
+justify-self: start;
+white-space: normal;
+word-break: break-word;
 color: ${({ theme }) => theme.colors.waterloo};
 
  &::before {
@@ -190,25 +192,24 @@ color: ${({ theme }) => theme.colors.waterloo};
   }
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
-     height: 14px;
+     height: auto;
      font-size: 12px;
 }
 `;
 
 export const Data = styled.li`
 width: auto;
-height: 22px;
+height: auto;
 font-size: 18px;
 font-weight: 400;
 line-height: 120%
 letter-spacing 0px;
-display: flex;
-align-items: flex-start;
+
 color: ${({ theme }) => theme.colors.black};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
-    width: auto;
-    height: 16px;
+    width: 100%;
+    height: auto;
     font-size: 12px;
     line-height: 130%;
 }

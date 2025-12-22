@@ -14,8 +14,9 @@ import {
     Rating,
     Star
 } from "./styled";
+import { GENRES } from "../../../Movies/MovieList/MovieListCard";
 
-export const ProfileMovies = ({ credits, genresMap }) =>  (
+export const ProfileMovies = ({ credits}) =>  (
     <Wrapper>
 <PersonSection>
                          <Header>Movies - cast ({credits?.cast?.length || 0})</Header>
@@ -39,7 +40,7 @@ export const ProfileMovies = ({ credits, genresMap }) =>  (
                                     <Tags>
                                          {movie.genre_ids?.map((id) => (
                                           <Tag key={id}>
-                                         {genresMap?.[id] || "Unknown"}
+                                         {GENRES[id] || "Unknown"}
                                            </Tag>
                                         ))}
                                     </Tags>   
@@ -77,7 +78,7 @@ export const ProfileMovies = ({ credits, genresMap }) =>  (
                                     <Tags>
                                          {movie.genre_ids?.map((id) => (
                                           <Tag key={id}>
-                                         {genresMap?.[id] || "Unknown"}
+                                         {GENRES?.[id] || "Unknown"}
                                            </Tag>
                                         ))}
                                     </Tags>   
