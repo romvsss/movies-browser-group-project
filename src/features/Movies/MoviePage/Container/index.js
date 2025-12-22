@@ -8,7 +8,8 @@ import { Container,
          Votes
         } from "./styled";
 
-const posterPath = (patch, size = "w780") => patch ? `https://image.tmdb.org/t/p/${size}${patch}` : null;
+const posterPath = (path, size = "w780") =>
+  path ? `https://image.tmdb.org/t/p/${size}${path}` : null;
 
 export const MovieSection = ({ movie }) => (
 <Container poster={posterPath(movie.backdrop_path || movie.poster_path)}>

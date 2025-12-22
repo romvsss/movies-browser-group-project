@@ -5,14 +5,19 @@ export const Container = styled.div`
 width: 100%;
 max-width: 1920px;
 height: 770px;
-background-image: url(${({ poster }) => poster});
+background-image: 
+${({ theme }) => theme.effects.posterGradient}, 
+${({ poster }) => poster ? `url(${poster})` : "none"};
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 margin-bottom: 64px;
-background-image: ${({ theme }) => theme.effects.posterGradient}; 
 display: flex;
 align-items: flex-end;
+
+img {
+    display: block;
+}
 
 @media(max-width: ${({ theme }) => theme.breakpoints.tabletHorizontalMax}px) {
     height: 600px;
@@ -37,7 +42,6 @@ align-items: flex-end;
 export const TitleContainer = styled.div`
 display: flex;
 flex-direction: column;
-background-color: ${({ theme }) => theme.colors.scienceBlue};
 width: auto;
 height: 176px;
 margin-left: 276px;

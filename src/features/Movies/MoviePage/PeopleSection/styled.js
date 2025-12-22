@@ -59,7 +59,7 @@ align-items: center;
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: 136px;
-    height: 245px;
+    height: auto;
     padding: 8px;
     margin-bottom: 4px;
 }
@@ -98,7 +98,7 @@ flex-wrap: wrap;
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: 120px;
-    height: 43px;
+    height: auto;
     gap: 8px;
 }
 `;
@@ -106,6 +106,7 @@ flex-wrap: wrap;
 export const TileName = styled.div`
 width: auto;
 height: auto;
+text-align: center;
 font-size: 22px;
 font-weight: 500;
 line-height: 130%;
@@ -114,7 +115,7 @@ color: ${({ theme }) => theme.colors.black};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: auto;
-    height: 18px;
+    height: auto;
     font-size: 14px;
 }
 `;
@@ -122,6 +123,7 @@ color: ${({ theme }) => theme.colors.black};
 export const TileRole = styled.div`
 width: auto;
 height: auto;
+text-align: center;
 font-size: 18px;
 font-weight: 400;
 line-height: 150%;
@@ -130,7 +132,7 @@ color: ${({ theme }) => theme.colors.Darkergrey};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: auto;
-    height: 25px;
+    height: auto;
     font-size: 13px;
     line-height: 130%;
 }

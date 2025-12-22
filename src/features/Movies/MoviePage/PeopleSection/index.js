@@ -38,11 +38,23 @@ export const Cast = ({ credits }) => {
                             </TileSection>
                       <Header>Crew</Header>
                             <TileSection>
-                              <Tile>
-                                <TileImage><Person /></TileImage>
-                                <TileName></TileName>
-                                <TileRole></TileRole>
+                              {credits.crew.slice(0, 10).map(person => (
+                                <Tile key={person.id}>
+                                   <TileImage>
+                                    {person.profile_path ? (
+                                      <img 
+                                        src={`https://image.tmdb.org/t/p/w185${person.profile_path}`}
+                                        alt={person.name}
+                                      />
+                                    ) : (<Person />
+                                    )}
+                                    </TileImage>
+                                    <PersonTile>
+                                <TileName>{person.name}</TileName>
+                                <TileRole>{person.job}</TileRole>
+                                </PersonTile>
                               </Tile>
+                              ))}                               
                             </TileSection>
                 </PeopleSection>
 )};
