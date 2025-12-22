@@ -15,111 +15,82 @@ import {
     Star
 } from "./styled";
 
-export const ProfileMovies = ({ credits }) => (
+export const ProfileMovies = ({ credits, genresMap }) =>  (
     <Wrapper>
 <PersonSection>
-                         <Header>Movies - cast (4)</Header>
-                        <TileSection>
-                            <Tile>
-                            <TileImage></TileImage>
+                         <Header>Movies - cast ({credits?.cast?.length || 0})</Header>
+                        <TileSection >
+                            {credits?.cast?.map((movie) => (
+                                <Tile key={movie.credit_id}>
+                            <TileImage>
+                                {movie.poster_path ? (
+                                    <img 
+                                    src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                                    alt={movie.title}
+                                    />
+                                ) : (
+                                    <div></div>
+                                )}
+                            </TileImage>
                                 <MovieTile>
-                                    <Title>Mulan long title</Title>
-                                    <Year>Zou Yu (2020)</Year>
+                                    <Title>{movie.title}</Title>
+                                    <Year>{movie.release_date ? 
+                                    new Date(movie.release_date).getFullYear() : "Unknown year"}</Year>
                                     <Tags>
-                                        <Tag>Tag1</Tag>
-                                        <Tag>Action</Tag>
-                                        <Tag>Adventure</Tag>
+                                         {movie.genre_ids?.map((id) => (
+                                          <Tag key={id}>
+                                         {genresMap?.[id] || "Unknown"}
+                                           </Tag>
+                                        ))}
                                     </Tags>   
                                 
                                     <RatingContent>
                                         <Rating>
-                                            <Star />7,8
+                                            <Star />{movie.vote_average.toFixed(1)}
                                         </Rating>
-                                            335 votes
+                                           {movie.vote_count} votes
                                     </RatingContent>   
                                   </MovieTile>                      
                             </Tile> 
-                             <Tile>
-                            <TileImage></TileImage>
-                                <MovieTile>
-                                    <Title>Mulan long title long title Mulan long title long</Title>
-                                    <Year>Zou Yu (2020)</Year>
-                                    <Tags>
-                                        <Tag>Tag1</Tag>
-                                        <Tag>Action</Tag>
-                                        <Tag>Adventure</Tag>
-                                    </Tags> 
-                                          
-                                    <RatingContent>
-                                        <Rating>
-                                            <Star />7,8
-                                        </Rating>
-                                            335 votes                                      
-                                    </RatingContent>    
-                                   </MovieTile>                                                  
-                            </Tile> 
-                             <Tile>
-                            <TileImage></TileImage>
-                                <MovieTile>
-                                    <Title></Title>
-                                    <Year></Year>
-                                    <Tags>
-                                        <Tag>Tag1</Tag>
-                                        <Tag>Action</Tag>
-                                        <Tag>Adventure</Tag>
-                                    </Tags> 
-                                          
-                                    <RatingContent>
-                                        <Rating>
-                                            <Star />7,8
-                                        </Rating>
-                                            335 votes
-                                    </RatingContent>  
-                                </MovieTile>                         
-                            </Tile> 
-                             <Tile>
-                            <TileImage></TileImage>
-                                <MovieTile>
-                                    <Title></Title>
-                                    <Year></Year>
-                                    <Tags>
-                                        <Tag>Tag1</Tag>
-                                        <Tag>Action</Tag>
-                                        <Tag>Adventure</Tag>
-                                    </Tags>    
-                                        
-                                    <RatingContent>
-                                        <Rating>
-                                            <Star />7,8
-                                        </Rating>                                       
-                                            335 votes
-                                    </RatingContent>
-                                </MovieTile> 
-                            </Tile> 
+                            ))}                           
                         </TileSection>
                     </PersonSection>
                     <PersonSection>
-                         <Header>Movies - crew (4)</Header>
-                        <TileSection>
-                            <Tile>
-                            <TileImage></TileImage>
+                         <Header>Movies - crew ({credits?.crew?.length || 0})</Header>
+                         <TileSection >
+                            {credits?.crew?.map((movie) => (
+                                <Tile key={movie.credit_id}>
+                            <TileImage>
+                                {movie.poster_path ? (
+                                    <img 
+                                    src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                                    alt={movie.title}
+                                    />
+                                ) : (
+                                    <div></div>
+                                )}
+                            </TileImage>
                                 <MovieTile>
-                                    <Title></Title>
-                                    <Year></Year>
+                                    <Title>{movie.title}</Title>
+                                    <Year>{movie.release_date ? 
+                                    new Date(movie.release_date).getFullYear() : "Unknown year"}</Year>
                                     <Tags>
-                                        <Tag>Tag1</Tag>
-                                        <Tag>Action</Tag>
-                                        <Tag>Adventure</Tag>
-                                    </Tags>     
-                                      
+                                         {movie.genre_ids?.map((id) => (
+                                          <Tag key={id}>
+                                         {genresMap?.[id] || "Unknown"}
+                                           </Tag>
+                                        ))}
+                                    </Tags>   
+                                
                                     <RatingContent>
                                         <Rating>
-                                            <Star />7,8
-                                        </Rating>                                   
-                                            335 votes
-                                    </RatingContent>
-                                </MovieTile> 
+                                            <Star />{movie.vote_average.toFixed(1)}
+                                        </Rating>
+                                           {movie.vote_count} votes
+                                    </RatingContent>   
+                                  </MovieTile>                      
                             </Tile> 
+                            ))}                           
                         </TileSection>
                     </PersonSection>
 </Wrapper>

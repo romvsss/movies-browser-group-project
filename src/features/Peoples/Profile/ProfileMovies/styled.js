@@ -111,6 +111,11 @@ export const TileImage = styled.div`
   margin-bottom: 12px;
   background-color: ${({ theme }) => theme.colors.waterloo};
 
+  img {
+    width: 100%;
+    height: auto;
+  }
+
   @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     width: 114px;
     height: 169px;

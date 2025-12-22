@@ -26,7 +26,9 @@ export const ProfileContainer = ({ person }) => (
         <Name>{person.name}</Name>
         <DataTile>
                     <ActorData></ActorData>
-                        <Data>{person.birthday}</Data>
+                        <Data>{person.birthday &&
+                           new Date(person.birthday).toLocaleDateString("pl-PL")
+                            }</Data>
         </DataTile>
         <DataTile>
                     <ActorData2></ActorData2>
