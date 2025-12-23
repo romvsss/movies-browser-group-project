@@ -11,6 +11,7 @@ export const Pagination = ({ page, totalPages, onPageChange }) => {
   return (
     <Wrapper>
       <Button disabled={page === 1} onClick={() => onPageChange(1)}>
+        <Arrow mobile="true" disabled={page === 1}/>
         <Arrow disabled={page === 1} />
         <ButtonText>First</ButtonText>
       </Button>
@@ -32,6 +33,7 @@ export const Pagination = ({ page, totalPages, onPageChange }) => {
       <Button disabled={page === totalPages} onClick={() => onPageChange(totalPages)}>
         <ButtonText>Last</ButtonText>
         <Arrow rotated="true" disabled={page === totalPages} />
+        <Arrow rotated="true" mobile="true" disabled={page === totalPages}/>
       </Button>
     </Wrapper>
   );
