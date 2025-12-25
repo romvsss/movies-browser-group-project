@@ -1,5 +1,7 @@
 import ProfileContainer from "./ProfileContainer";
 import ProfileMovies from "./ProfileMovies";
+import Loading from '../../../common/Loading';
+import Error from "../../../common/Error";
 import { Wrapper } from "./styled";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -22,8 +24,8 @@ export const Profile = () => {
     dispatch(fetchPersonDetails(id));
   }, [dispatch, id]);
 
-  if (status === "loading") return <p>Loading…</p>;
-  if (status === "error") return <p>Błąd ładowania</p>;
+  if (status === "loading") return <Loading />;
+  if (status === "error") return <Error />;
   if (!person) return null;
 
   return (
