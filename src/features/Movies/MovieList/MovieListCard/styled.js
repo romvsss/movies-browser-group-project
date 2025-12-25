@@ -11,7 +11,7 @@ export const MovieTile = styled(Link)`
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   overflow: hidden;
   height: 100%;
 
@@ -96,7 +96,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.woodsmoke};
   margin: 0;
   font-weight: 500;
   font-size: 22px;
@@ -136,12 +136,16 @@ export const GenresWrapper = styled.div`
   gap: 8px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
-    width: 126px;
     column-gap: 8px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileSMax}px) {
+    gap: 4px;
   }
 `;
 
 export const Genre = styled.p`
+  color: ${({ theme }) => theme.colors.woodsmoke};
   background-color: ${({ theme }) => theme.colors.mystic};
   margin: 0;
   border-radius: 5px;
@@ -170,14 +174,29 @@ export const RatingContainer = styled.div`
 export const Star = styled(StarSvg)`
   width: 24px;
   height: 24px;
+  margin-bottom: 4px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 2px;
+  }
 `;
 
 export const Rate = styled.p`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.woodsmoke};
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
-  margin-bottom: 0px;
+  margin: 0px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileSMax}px) {
+    font-size: 11px;
+  }
 `;
 
 export const Votes = styled.p`
@@ -185,7 +204,15 @@ export const Votes = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
-  margin-bottom: 0px;
+  margin: 0px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileSMax}px) {
+    font-size: 11px;
+  }
 `;
 
 export const SpinnerWrapper = styled.div`

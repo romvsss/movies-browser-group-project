@@ -12,6 +12,8 @@ export const theme = {
     mystic: "#E4E6F0",
     silver: "#C4C4C4",
     waterloo: "#7E839A",
+    mineShaft: "#333333",
+    woodsmoke: "#18181B",
     black: "#000000",
     candlelight: "#FCD420",
     pattensBlue: "#D6E4FF",
@@ -20,9 +22,11 @@ export const theme = {
   },
 
   breakpoints: {
+    mobileSMax: 343,
     mobileMax: 767,
     tabletVerticalMax: 991,
     tabletHorizontalMax: 1199,
+    desktopMax: 1366,
   },
 
   effects: {

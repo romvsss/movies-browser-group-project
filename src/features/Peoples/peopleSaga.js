@@ -1,9 +1,12 @@
 import { call, put, takeLatest, delay, all } from "redux-saga/effects";
-import { getPopularPeople, getPersonDetails, getPersonMovieCredits } from "../../core/api";
+import { getPopularPeople, getPersonDetails, getPersonMovieCredits, searchPeople } from "../../core/api";
 import {
   fetchPopularPeople,
   fetchPopularPeopleSuccess,
   fetchPopularPeopleError,
+  fetchSearchPeople,
+  fetchSearchPeopleSuccess,
+  fetchSearchPeopleError,
   fetchPersonDetails,
   fetchPersonDetailsSuccess,
   fetchPersonDetailsError,
@@ -17,6 +20,17 @@ function* fetchPopularPeopleHandler({ payload: page }) {
     yield put(fetchPopularPeopleSuccess(people));
   } catch (error) {
     yield put(fetchPopularPeopleError());
+  }
+}
+
+// Worker dla Wyszukiwarki
+function* fetchSearchPeopleHandler({ payload: { query, page } }) {
+  try {
+    yield delay(500);
+    const people = yield call(searchPeople, query, page);
+    yield put(fetchSearchPeopleSuccess(people));
+  } catch (error) {
+    yield put(fetchSearchPeopleError());
   }
 }
 
@@ -37,5 +51,6 @@ function* fetchPersonDetailsHandler({ payload: id }) {
 // Watcher
 export function* peopleSaga() {
   yield takeLatest(fetchPopularPeople.type, fetchPopularPeopleHandler);
+  yield takeLatest(fetchSearchPeople.type, fetchSearchPeopleHandler);
   yield takeLatest(fetchPersonDetails.type, fetchPersonDetailsHandler);
 }

@@ -69,3 +69,10 @@ export const searchPeople = async (query, page = 1) => {
   });
   return response.data;
 };
+
+// --- Genres ---
+
+export const getMovieGenres = async () => {
+  const response = await axiosInstance.get("/genre/movie/list");
+  return response.data;
+};

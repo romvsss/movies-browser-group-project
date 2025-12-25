@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as VideoSvg } from "../../../images/video.svg";
 
@@ -11,7 +12,8 @@ export const LeftWrapper = styled.div`
   }
 `;
 
-export const LogoWrapper = styled.div`
+export const LogoLink = styled(Link)`
+  text-decoration: none;
   display: flex;
   align-items: center;
   width: fit-content;

@@ -3,10 +3,12 @@ import { StyledButton, CenterWrapper } from "./styled";
 export const Buttons = () => {
   return (
     <CenterWrapper>
-      <StyledButton className="active"> {/*class added for styles preview*/}
+      <StyledButton to="/movies">
         MOVIES
       </StyledButton>
-      <StyledButton>PEOPLE</StyledButton>
+      <StyledButton to="/people">
+        PEOPLE
+      </StyledButton>
     </CenterWrapper>
   );
 };
