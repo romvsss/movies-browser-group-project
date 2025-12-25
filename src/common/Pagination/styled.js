@@ -90,6 +90,14 @@ export const Arrow = styled(VectorSvg)`
     transform: rotate(180deg);
   `}
 
+  ${({ mobile }) => mobile && css`
+    display: none; // Domyślnie ukryta na desktopie
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+      display: block; // Pokazuje się tylko na mobile
+    }
+  `}
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     width: 5px;
     height: 8px;
