@@ -9,6 +9,7 @@ margin: 0;
 
 export const PersonSection = styled.section`
 max-width: 1368px;
+width: 100%;
 height: auto;
 margin: 0 auto;
 margin-bottom: 64px;
@@ -46,19 +47,19 @@ letter-spacing: 0px;
 
 export const TileSection = styled.div`
 display: grid;
-grid-template-columns: repeat(4, 324px);
+grid-template-columns: repeat(4, minmax(0, 1fr));
 grid-gap: 24px;
 margin-bottom: 64px;
 justify-content: center;
 
 @media(max-width: ${({ theme }) => theme.breakpoints.tabletHorizontalMax}px) { 
-    grid-template-columns: repeat(3, 324px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-gap: 16px;
     margin-bottom: 48px;
 };
 
 @media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) { 
-    grid-template-columns: repeat(2, 324px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-gap: 16px;
     margin-bottom: 32px;
 };
@@ -71,8 +72,8 @@ justify-content: center;
 `;
 
 export const Tile = styled.div`
-  max-width: 324px;
-  width: auto;
+  
+  width: 100%;
   height: auto;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.colors.white};
@@ -105,7 +106,8 @@ export const Tile = styled.div`
 `;
 
 export const TileImage = styled.div`
-  width: 292px;
+  max-width: 292px;
+  width: 100%;
   height: 434px;
   border-radius: 5px;
   margin-bottom: 12px;
