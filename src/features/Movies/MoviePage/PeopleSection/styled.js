@@ -111,7 +111,7 @@ font-size: 22px;
 font-weight: 500;
 line-height: 130%;
 letter-spacing: 0px;
-color: ${({ theme }) => theme.colors.black};
+color: ${({ theme }) => theme.colors.woodsmoke};
 
 @media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
     width: auto;

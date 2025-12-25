@@ -1,6 +1,30 @@
 import styled from "styled-components";
 import { ReactComponent as StarIcon40px } from "../../../../images/shape-star.svg";
 
+export const BackgroundPoster = styled.div`
+background-color: ${({ theme }) => theme.colors.black};
+width: 100vw;
+height: 770px;
+display: flex;
+justify-content: center;
+margin-bottom: 64px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletHorizontalMax}px) {
+    height: 600px;
+    margin-bottom: 48px;
+};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    height: 450px;
+    margin-bottom: 43px;
+};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    height: 148px;
+    margin-bottom: 16px;
+}
+`;
+
 export const Container = styled.div`
 width: 100%;
 max-width: 1920px;
@@ -10,8 +34,7 @@ ${({ theme }) => theme.effects.posterGradient},
 ${({ poster }) => poster ? `url(${poster})` : "none"};
 background-position: center;
 background-repeat: no-repeat;
-background-size: cover;
-margin-bottom: 64px;
+background-size: contain;
 display: flex;
 align-items: flex-end;
 
@@ -21,13 +44,11 @@ img {
 
 @media(max-width: ${({ theme }) => theme.breakpoints.tabletHorizontalMax}px) {
     height: 600px;
-    margin-bottom: 48px;
     max-width: 100%;
 };
 
 @media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
     height: 450px;
-    margin-bottom: 43px;
     max-width: 100%;
 };
 
@@ -35,7 +56,6 @@ img {
     max-width: 320px;
     width: 100%;
     height: 148px;
-    margin-bottom: 16px;
 }
 `;
 

@@ -5,15 +5,17 @@ import { Container,
          TitleRatingContent,
          Layout,
          Star40px,
-         Votes
+         Votes,
+         BackgroundPoster,
         } from "./styled";
 
 const posterPath = (path, size = "w780") =>
   path ? `https://image.tmdb.org/t/p/${size}${path}` : null;
 
 export const MovieSection = ({ movie }) => (
-<Container poster={posterPath(movie.backdrop_path || movie.poster_path)}>
-                
+  <BackgroundPoster>
+    <Container poster={posterPath(movie.backdrop_path || movie.poster_path)}>
+           
                 <TitleContainer>
                     <MovieTitle>{movie.title}</MovieTitle>
                         
@@ -34,6 +36,7 @@ export const MovieSection = ({ movie }) => (
                     </TitleRatingContent>
                 </TitleContainer>
             </Container >
+  </BackgroundPoster>
 );
 
 export default MovieSection;
