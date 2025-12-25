@@ -15,7 +15,7 @@ export const ProfileContainer = ({ person }) => (
 <Container>
     <ActorImage>{person.profile_path ? (
                 <img
-                  src={`https://image.tmdb.org/t/p/w185${person.profile_path}`}
+                  src={`https://image.tmdb.org/t/p/w342${person.profile_path}`}
                   alt={person.name}
                 />
               ) : (
