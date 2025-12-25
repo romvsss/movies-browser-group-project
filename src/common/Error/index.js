@@ -16,3 +16,5 @@ export const Error = () => (
     </Wrapper>
   </Container>
 );
+
+export default Error;

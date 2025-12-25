@@ -47,7 +47,11 @@ export const ProfileMovies = ({ credits}) =>  (
                                 
                                     <RatingContent>
                                         <Rating>
-                                            <Star />{movie.vote_average.toFixed(1)}
+                                            <Star /> {movie.vote_average === 0 ? ""
+                                             : `${movie.vote_average.toLocaleString("pl-PL", {
+                                                  minimumFractionDigits: 1,
+                                                  maximumFractionDigits: 1,
+                                             })}`}
                                         </Rating>
                                            {movie.vote_count} votes
                                     </RatingContent>   
