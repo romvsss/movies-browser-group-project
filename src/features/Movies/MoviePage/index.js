@@ -2,8 +2,8 @@ import { Wrapper, MovieDetails } from "./styled";
 import MovieSection from "./Container";
 import MovieTileSection from "./MovieTile";
 import Cast from "./PeopleSection";
-import Loading from '../../../common/Navigation/SearchBar/Content/Loading';
-import Error from "../../../common/Navigation/SearchBar/Content/Error"
+import Loading from "../../../common/Loading";
+import { Error } from "../../../common/Error/index";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
