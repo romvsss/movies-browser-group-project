@@ -2,6 +2,8 @@ import { Wrapper, MovieDetails } from "./styled";
 import MovieSection from "./Container";
 import MovieTileSection from "./MovieTile";
 import Cast from "./PeopleSection";
+import Loading from '../../../common/Navigation/SearchBar/Content/Loading';
+import Error from "../../../common/Navigation/SearchBar/Content/Error"
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,8 +25,8 @@ export const MoviePage = () => {
     dispatch(fetchMovieDetails(id));
   }, [dispatch, id]);
 
-  if (status === "loading") return <div>Loading...</div>;
-  if (status === "error") return <div>Błąd ładowania</div>;
+  if (status === "loading") return <Loading />;
+  if (status === "error") return <Error />;
   if (!movie) return null;
 
   return (
