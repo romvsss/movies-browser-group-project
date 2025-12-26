@@ -27,7 +27,7 @@ export const MoviePage = () => {
 
   if (status === "loading") return <Loading />;
   if (status === "error") return <Error />;
-  if (!movie) return null;
+  if (!movie) return <Error />
 
   return (
     <div >

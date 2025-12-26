@@ -51,11 +51,20 @@ export const PeopleList = () => {
   return (
     <>
       <StyledHeader>
-        {query
-          ? `Search results for "${query}"${
-              totalResults ? ` (${totalResults})` : ""
-            }`
-          : "Popular people"}
+        {query ? (
+          status === "success" && totalResults === 0 ? (
+            <>Sorry, there are no results for "{query}"</>
+          ) : (
+            <>
+              Search results for "{query}"
+              {status === "success" && totalResults > 0 && (
+                <> ({totalResults})</>
+              )}
+            </>
+          )
+        ) : (
+          "Popular people"
+        )}
       </StyledHeader>
 
       {status === "loading" && (

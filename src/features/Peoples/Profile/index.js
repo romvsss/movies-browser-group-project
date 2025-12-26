@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectPeopleList } from "../peopleSlice";
+import { Error } from "../../../common/Error";
 
 export const Profile = () => {
   const { id } = useParams();
   const people = useSelector(selectPeopleList);
   const person = people.find((p) => p.id.toString() === id);
 
-  if (!person) return <p>Person not found</p>;
+  if (!person) return <Error />;
 
   return (
     <div style={{ padding: "20px" }}>
