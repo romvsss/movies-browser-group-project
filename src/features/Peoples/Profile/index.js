@@ -1,19 +1,37 @@
+import ProfileContainer from "./ProfileContainer";
+import ProfileMovies from "./ProfileMovies";
+import Loading from '../../../common/Loading';
+import Error from "../../../common/Error";
+import { Wrapper } from "./styled";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectPeopleList } from "../peopleSlice";
-import { Error } from "../../../common/Error";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPersonDetails,
+         selectPersonDetails,
+         selectPersonCredits,
+         selectDetailsStatus 
+} from "../peopleSlice";
 
 export const Profile = () => {
   const { id } = useParams();
-  const people = useSelector(selectPeopleList);
-  const person = people.find((p) => p.id.toString() === id);
+  const dispatch = useDispatch();
 
-  if (!person) return <Error />;
+  const person = useSelector(selectPersonDetails);
+  const credits = useSelector(selectPersonCredits);
+  const status = useSelector(selectDetailsStatus);
+
+  useEffect(() => {
+    dispatch(fetchPersonDetails(id));
+  }, [dispatch, id]);
+
+  if (status === "loading") return <Loading />;
+  if (status === "error") return <Error />;
+  if (!person) return null;
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>{person.name}</h1>
-      <>DETAILS COMING SOON</>
-    </div>
+    <Wrapper>
+    <ProfileContainer person={person} />
+          <ProfileMovies credits={credits} />          
+ </Wrapper>
   );
 };
