@@ -28,6 +28,7 @@ margin-bottom: 64px;
 `;
 
 export const Header = styled.header`
+color: ${({ theme }) => theme.colors.woodsmoke};
 width: auto;
 height: 43px;
 margin-bottom: 24px;
@@ -72,7 +73,6 @@ justify-content: center;
 `;
 
 export const Tile = styled.div`
-  
   width: 100%;
   height: auto;
   border-radius: 5px;
@@ -127,6 +127,7 @@ export const TileImage = styled.div`
 `;
 
 export const MovieTile = styled.div`
+  color: ${({ theme }) => theme.colors.woodsmoke};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
