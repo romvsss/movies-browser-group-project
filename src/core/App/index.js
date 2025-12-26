@@ -8,6 +8,7 @@ import { MovieList } from "../../features/Movies/MovieList";
 import { MoviePage } from "../../features/Movies/MoviePage";
 import { PeopleList } from "../../features/Peoples/PeopleList";
 import { Profile } from "../../features/Peoples/Profile";
+import { Error } from "../../common/Error";
 
 export const App = () => (
   <HashRouter>
@@ -22,6 +23,7 @@ export const App = () => (
           <Route path="/movies/:id" element={<MoviePage />} />
           <Route path="/people" element={<PeopleList />} />
           <Route path="/people/:id" element={<Profile />} />
+          <Route path="*" element={<Error />} />
         </Routes>
 
       </Container>

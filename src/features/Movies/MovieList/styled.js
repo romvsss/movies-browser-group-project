@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   margin: auto;
   padding: 0 0 40px 0;
   width: 100%;
+  max-width: 1368px;
   box-sizing: border-box;
 `;
 

@@ -1,0 +1,394 @@
+import styled from "styled-components";
+import { ReactComponent as CameraIcon } from "../../../../images/video.svg";
+import { ReactComponent as StarIcon } from "../../../../images/shape-star.svg";
+
+export const MovieTile = styled.article`
+max-width: 1368px;
+width: auto;
+height: auto;
+margin: auto;
+margin-bottom: 40px;
+background-color: ${({ theme }) => theme.colors.white};
+padding: 40px;
+display: grid;
+align-items: start;
+grid-template-columns: auto 1fr;
+grid-template-rows: auto 1fr;
+grid-template-areas:
+    "poster mobile"
+    "poster story";
+grid-column-gap: 40px;
+grid-row-gap: 16px;
+box-shadow: 0px 4px 12px #BAC7D580;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    max-width: 768px;
+    height: auto;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "poster mobile"
+    "story story";
+    grid-column-gap: 24px;
+    grid-row-gap: 16px;
+    margin-bottom: 48px;
+};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    max-width: 288px;
+    height: auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "poster mobile"
+    "story story";
+    grid-column-gap: 16px;
+    grid-row-gap: 8px;
+    padding: 16px;
+    margin-bottom: 21px;
+}
+`;
+
+export const Poster = styled.div`
+width: 312px;
+aspect-ratio: 312 / 464;
+border-radius: 5px;
+overflow: hidden;
+background-color: ${({ theme }) => theme.colors.waterloo};
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+background-image: ${({ theme }) => theme.effects.tileSHadow};
+display: flex;
+align-items: center;
+justify-content: center;
+grid-area: poster;
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    width: 200px;
+    grid-area: poster;
+};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+width: 114px;
+grid-area: poster;
+}
+`;
+
+export const MobileOnly = styled.div`
+width: auto;
+max-width: 100%;
+min-width: 0;
+height: auto;
+gap: 8px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+flex-wrap: wrap;
+grid-area: mobile;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-area: mobile;
+};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-area: mobile;
+}
+`;
+
+export const Title = styled.header`
+font-size: 36px;
+font-weight: 600;
+line-height: 120%;
+letter-spacing: 0px;
+margin-bottom: 24px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    font-size: 24px;
+    margin-bottom: 16px;
+};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    font-size: 16px;
+    font-weight: 500; 
+    line-height: 130%;
+    letter-spacing: 0px;
+    margin-bottom: 0px;
+}
+`;
+
+export const Year = styled.div`
+font-size: 22px;
+font-weight: 400;
+line-height: 120%;
+letter-spacing: 0px;
+word-break: break-word;
+margin-bottom: 16px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0px;
+    word-break: break-word;
+};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: 0px;
+    word-break: break-word;
+    margin-bottom: 0px;
+}
+`;
+
+export const DataTile = styled.ul`
+width: auto;
+height: auto;
+padding: 0;
+display: grid;
+grid-template-columns: max-content 1fr;
+column-gap: 8px;
+margin: 0px;;
+list-style: none;
+color: ${({ theme }) => theme.colors.waterloo};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    max-width: 126px;
+    height: auto;
+    grid-template-columns: 1fr;
+    row-gap: 4px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+`;
+
+export const MovieData= styled.li`
+height: 22px;
+font-size: 18px;
+font-weight: 400;
+line-height: 120%
+letter-spacing 0px;
+justify-self: start;
+white-space: nowrap;
+color: ${({ theme }) => theme.colors.waterloo};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    display: none;
+}
+`;
+
+export const Data = styled.li`
+width: auto;
+height: auto;
+font-size: 18px;
+font-weight: 400;
+line-height: 120%
+letter-spacing 0px;
+display: flex;
+align-items: flex-start;
+flex-wrap: wrap;
+color: ${({ theme }) => theme.colors.black};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    height: auto;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0px;
+    color: ${({ theme }) => theme.colors.black};
+}
+`;
+
+export const Tags = styled.ul`
+width: auto;
+height: 30px;
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+gap: 16px;
+padding-inline-start: 0;
+list-style: none;
+margin-bottom: 4px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    height: auto;
+    gap: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 1px;
+    margin-bottom: 0px;
+}
+`;
+
+export const Tag = styled.li`
+width: auto;
+height: 30px;
+background-color: ${({ theme }) => theme.colors.mystic};
+padding: 8px 16px;
+border-radius: 5px;
+font-size: 14px;
+font-weight: 400;
+line-height: 100%;
+letter-spacing: 0px;
+color: ${({ theme }) => theme.colors.black};
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    height: 19px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+`;
+
+export const RatingContent = styled.div`
+width: auto;
+height: 29px;
+font-size: 14px;
+font-weight: 400;
+line-height: 120%;
+letter-spacing: 0px;
+margin-bottom: 18px;
+margin-top: 8px;
+display: flex;
+flex-direction: row;
+align-items: baseline;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    height: 24px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 13px;
+    line-height: 130%;
+    letter-spacing: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+`;
+
+export const Rating = styled.div`
+width: auto;
+height: 29px;
+font-size: 22px;
+font-weight: 500;
+line-height: 130%;
+letter-spacing: 0px;
+vertical-align: middle;
+color: ${({ theme }) => theme.colors.black};
+margin-right: 8px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    height: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: 0px;
+    margin-right: 4px;
+    display: flex;
+    align-items: center;
+}
+`;
+
+export const DataMobileOnly = styled.div`
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    display: none;
+}
+`;
+
+export const Votes = styled.p`
+width: auto;
+height: 17px;
+font-size: 14px;
+font-weight: 400;
+line-height: 120%;
+letter-spacing: 0px;
+color: ${({ theme }) => theme.colors.black};
+margin-left: 8px;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    height: 16px;
+    font-size: 13px;
+    line-height: 130%;
+    color: ${({ theme }) => theme.colors.Darkergrey};
+}
+`;
+
+export const Story = styled.div`
+width: 100%;
+height: auto;
+min-width: 0;
+max-width: 936px;
+font-size: 20px;
+font-weight: 400;
+line-height: 160%;
+letter-spacing: 0px;
+color: ${({ theme }) => theme.colors.black};
+grid-area: story;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.tabletVerticalMax}px) {
+    font-size: 18px;
+    line-height: 150%;
+    width: auto;
+    max-width: 700px;
+    height: auto;
+    display: grid;
+    grid-area: story;
+}
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) { 
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-area: story;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: 0px;
+}
+`;
+
+export const NoMovieIcon = styled(CameraIcon)`
+width: 128px;
+height: 128px;
+stroke-width: 1.5px;
+`;
+
+export const Star = styled(StarIcon)`
+width: 24px;
+height: 24px;
+margin-right: 8px;
+vertical-align: middle;
+
+@media(max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+`;
