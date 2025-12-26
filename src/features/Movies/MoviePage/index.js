@@ -1,19 +1,45 @@
+import { Wrapper, MovieDetails } from "./styled";
+import MovieSection from "./Container";
+import MovieTileSection from "./MovieTile";
+import Cast from "./PeopleSection";
+import Loading from "../../../common/Loading";
+import { Error } from "../../../common/Error/index";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectMovieList } from "../movieSlice";
-import { Error } from "../../../common/Error";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchMovieDetails,
+         selectMovieDetails,
+         selectMovieCredits,
+         selectDetailsStatus
+ } from "../movieSlice";
 
 export const MoviePage = () => {
   const { id } = useParams();
-  const movies = useSelector(selectMovieList);
-  const movie = movies.find((m) => m.id.toString() === id);
+  const dispatch = useDispatch();
 
+  const movie = useSelector(selectMovieDetails);
+  const credits = useSelector(selectMovieCredits);
+  const status = useSelector(selectDetailsStatus);
+
+  useEffect(() => {
+    dispatch(fetchMovieDetails(id));
+  }, [dispatch, id]);
+
+  if (status === "loading") return <Loading />;
+  if (status === "error") return <Error />;
   if (!movie) return <Error />
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>{movie.title}</h1>
-      <>COMING SOON</>
+    <div >
+      <Wrapper>
+            <MovieSection movie={movie}/>
+            <MovieDetails>
+                <MovieTileSection movie={movie} />
+                <Cast credits={credits}/>
+            </MovieDetails>
+        </Wrapper>
     </div>
   );
 };
+
+export default MoviePage;

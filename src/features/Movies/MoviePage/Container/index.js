@@ -1,0 +1,42 @@
+import { Container, 
+         TitleContainer,
+         MovieTitle,
+         TitleRating,
+         TitleRatingContent,
+         Layout,
+         Star40px,
+         Votes,
+         BackgroundPoster,
+        } from "./styled";
+
+const posterPath = (path, size = "w780") =>
+  path ? `https://image.tmdb.org/t/p/${size}${path}` : null;
+
+export const MovieSection = ({ movie }) => (
+  <BackgroundPoster>
+    <Container poster={posterPath(movie.backdrop_path || movie.poster_path)}>
+           
+                <TitleContainer>
+                    <MovieTitle>{movie.title}</MovieTitle>
+                        
+                        <TitleRatingContent>
+                            <Layout>
+                    <TitleRating>
+                    <Star40px />
+                    {movie.vote_average.toLocaleString("pl-PL", {
+                      minimumFractionDigits: 1,
+                      maximumFractionDigits: 1,
+                   })}
+                    </TitleRating>
+                             /10
+                             </Layout>
+                    <Votes>
+                    {movie.vote_count} votes
+                    </Votes>
+                    </TitleRatingContent>
+                </TitleContainer>
+            </Container >
+  </BackgroundPoster>
+);
+
+export default MovieSection;
