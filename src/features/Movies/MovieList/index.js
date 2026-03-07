@@ -11,12 +11,11 @@ import {
   selectTotalResults,
   selectGenres,
 } from "../movieSlice";
-import { StyledHeader, Container, Wrapper } from "./styled";
+import { Container, Wrapper } from "./styled";
 import { MovieListCard } from "./MovieListCard";
-import { SpinnerWrapper, StyledSpinner } from "../../../common/Loading/styled";
-import { Error } from "../../../common/Error/index";
-import { NoResults } from "../../../common/NoResults/index";
-import { Pagination } from "../../../common/Pagination";
+import { Pagination, maxPageSize } from "../../../common/Pagination";
+import { MovieListHeader } from "./MovieListHeader";
+import { MovieListContent } from "./MovieListContent";
 
 export const MovieList = () => {
   const dispatch = useDispatch();
@@ -56,56 +55,31 @@ export const MovieList = () => {
     }
   };
 
-  if (status === "error") {
-    return <Error />;
-  }
-
   return (
     <Wrapper>
-      {(status === "loading" || status === "success") && (
-        <StyledHeader>
-          {query ? (
-            status === "success" && totalResults === 0 ? (
-              <>Sorry, there are no results for "{query}"</>
-            ) : (
-              <>
-                Search results for "{query}"
-                {status === "success" && totalResults > 0 && (
-                  <> ({totalResults})</>
-                )}
-              </>
-            )
-          ) : (
-            "Popular movies"
-          )}
-        </StyledHeader>
-      )}
+      <MovieListHeader
+        query={query}
+        status={status}
+        totalResults={totalResults}
+      />
 
-      {status === "loading" && (
-        <SpinnerWrapper>
-          <StyledSpinner />
-        </SpinnerWrapper>
-      )}
-
-      {status === "success" && (
+      <MovieListContent
+        status={status}
+        isNoResults={isNoResults}
+        query={query}
+      >
         <>
-          {isNoResults ? (
-            <NoResults query={query} />
-          ) : (
-            <>
-              <Container>
-                <MovieListCard movies={movies} genresMap={genresMap} />
-              </Container>
+          <Container>
+            <MovieListCard movies={movies} genresMap={genresMap} />
+          </Container>
 
-              <Pagination
-                page={page}
-                totalPages={totalPages > 500 ? 500 : totalPages}
-                onPageChange={onPageChange}
-              />
-            </>
-          )}
+          <Pagination
+            page={page}
+            totalPages={Math.min(totalPages, maxPageSize)}
+            onPageChange={onPageChange}
+          />
         </>
-      )}
+      </MovieListContent>
     </Wrapper>
   );
 };

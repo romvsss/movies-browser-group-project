@@ -10,7 +10,7 @@ export const Error = () => (
         <br />
         and try again
       </Paragraph>
-      <Button onClick={() => window.location.reload()}>
+      <Button to="/movies">
         Back to home page
       </Button>
     </Wrapper>

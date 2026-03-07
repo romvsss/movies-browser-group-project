@@ -5,15 +5,14 @@ import {
   PhotoPlaceholder,
 } from "./styled";
 import { ReactComponent as PhotoPlaceholderSvg } from "../../../../images/Profile.svg";
-
-const PHOTO_BASE_URL = "https://image.tmdb.org/t/p/w342"
+import { IMAGE_BASE_URL } from "../../../../core/api"
 
 export const PeopleListCard = ({ person }) => {
   return (
     <PeopleTile to={`/people/${person.id}`}>
       {person.profile_path ? (
         <Photo
-          src={`${PHOTO_BASE_URL}${person.profile_path}`}
+          src={`${IMAGE_BASE_URL}w342${person.profile_path}`}
           alt={person.name}
         />
       ) : (

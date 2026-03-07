@@ -1,15 +1,16 @@
 import ProfileContainer from "./ProfileContainer";
 import ProfileMovies from "./ProfileMovies";
-import Loading from '../../../common/Loading';
+import Loading from "../../../common/Loading";
 import Error from "../../../common/Error";
 import { Wrapper } from "./styled";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPersonDetails,
-         selectPersonDetails,
-         selectPersonCredits,
-         selectDetailsStatus 
+import {
+  fetchPersonDetails,
+  selectPersonDetails,
+  selectPersonCredits,
+  selectDetailsStatus,
 } from "../peopleSlice";
 import { selectGenres } from "../../Movies/movieSlice";
 
@@ -32,8 +33,8 @@ export const Profile = () => {
 
   return (
     <Wrapper>
-    <ProfileContainer person={person} />
-          <ProfileMovies credits={credits} genresMap={genresMap} />         
- </Wrapper>
+      <ProfileContainer person={person} />
+      <ProfileMovies credits={credits} genresMap={genresMap} />
+    </Wrapper>
   );
 };

@@ -3,20 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 const peopleSlice = createSlice({
   name: "people",
   initialState: {
-    // Stan dla Listy Ludzi
+    // Status for People List
     peopleList: [],
     status: "initial",
     page: 1,
     totalPages: 0,
     totalResults: 0,
 
-    // Stan dla Profilu Osoby
+    // Status for Person Details
     personDetails: null,
     personCredits: null,
     detailsStatus: "initial",
   },
   reducers: {
-    // --- LISTA ---
+    // --- POPULAR PEOPLE ---
     fetchPopularPeople: (state, { payload: page }) => {
       state.status = "loading";
       state.page = page;
@@ -45,7 +45,7 @@ const peopleSlice = createSlice({
       state.status = "error";
     },
 
-    // --- PROFIL ---
+    // --- PROFILE ---
     fetchPersonDetails: (state) => {
       state.detailsStatus = "loading";
     },

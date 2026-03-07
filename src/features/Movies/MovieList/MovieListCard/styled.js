@@ -205,6 +205,7 @@ export const Votes = styled.p`
   font-size: 16px;
   line-height: 150%;
   margin: 0px;
+  justify-content: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {
     font-size: 13px;

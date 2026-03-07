@@ -12,7 +12,7 @@ import {
   fetchPersonDetailsError,
 } from "./peopleSlice";
 
-// Worker dla Listy
+// Worker for popular people
 function* fetchPopularPeopleHandler({ payload: page }) {
   try {
     yield delay(500);
@@ -23,7 +23,7 @@ function* fetchPopularPeopleHandler({ payload: page }) {
   }
 }
 
-// Worker dla Wyszukiwarki
+// Worker for searching people
 function* fetchSearchPeopleHandler({ payload: { query, page } }) {
   try {
     yield delay(500);
@@ -34,7 +34,7 @@ function* fetchSearchPeopleHandler({ payload: { query, page } }) {
   }
 }
 
-// Worker dla Profilu
+// Worker for person details
 function* fetchPersonDetailsHandler({ payload: id }) {
   try {
     yield delay(500);

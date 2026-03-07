@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const moviesSlice = createSlice({
   name: "movies",
   initialState: {
-    // Stan dla Listy Filmów
+    // Status for Popular Movies
     movieList: [],
     status: "initial",
     page: 1,
@@ -12,13 +12,13 @@ const moviesSlice = createSlice({
     genres: {},
     genresStatus: "initial",
 
-    // Stan dla Szczegółów Filmu
+    // Status for Movie Details
     movieDetails: null,
     movieCredits: null,
     detailsStatus: "initial",
   },
   reducers: {
-    // --- LISTA ---
+    // --- POPULAR MOVIES ---
     fetchPopularMovies: (state, { payload: page }) => {
       state.status = "loading";
       state.page = page;
@@ -33,7 +33,7 @@ const moviesSlice = createSlice({
       state.status = "error";
     },
 
-    // --- SZCZEGÓŁY ---
+    // --- MOVIE DETAILS ---
     fetchMovieDetails: (state) => {
       state.detailsStatus = "loading";
     },

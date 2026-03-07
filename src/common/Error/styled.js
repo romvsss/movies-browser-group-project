@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as DangerIcon } from "../../images/danger.svg";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   height: 100vh;
@@ -47,7 +48,8 @@ export const Paragraph = styled.p`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled(Link)`
+  text-decoration: none;
   background-color: ${({ theme }) => theme.colors.scienceBlue};
   color: ${({ theme }) => theme.colors.white};
   border: none;
@@ -61,7 +63,8 @@ export const Button = styled.button`
 
   &:hover {
     background-color: #0055ffff;
-    transform: scale(1.02);
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.effects.tileShadowHover};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}px) {

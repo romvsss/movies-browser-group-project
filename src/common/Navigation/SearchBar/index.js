@@ -9,8 +9,6 @@ export const SearchBar = () => {
 
   const isMovies = location.pathname.startsWith("/movies");
 
-  const isPeople = location.pathname.startsWith("/people");
-
   const placeholder = isMovies
     ? "Search for movies..."
     : "Search for people...";

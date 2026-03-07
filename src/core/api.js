@@ -3,6 +3,8 @@ import axios from "axios";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = process.env.REACT_APP_API_KEY;
 
+export const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
+
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   params: {

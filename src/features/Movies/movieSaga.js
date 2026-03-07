@@ -15,10 +15,10 @@ import {
   fetchGenresError,
 } from "./movieSlice";
 
-// Worker dla Listy
+// Worker for popular movies
 function* fetchPopularMoviesHandler({ payload: page }) {
   try {
-    yield delay(500); // Symulacja ładowania
+    yield delay(500); // loading simulation
     const movies = yield call(getPopularMovies, page);
     yield put(fetchPopularMoviesSuccess(movies));
   } catch (error) {
@@ -26,7 +26,7 @@ function* fetchPopularMoviesHandler({ payload: page }) {
   }
 }
 
-// Worker dla Szczegółów 
+// Worker for movie details 
 function* fetchMovieDetailsHandler({ payload: id }) {
   try {
     yield delay(500);
@@ -40,7 +40,7 @@ function* fetchMovieDetailsHandler({ payload: id }) {
   }
 }
 
-// Worker dla Wyszukiwania filmów
+// Worker for movies searching
 function* fetchSearchMoviesHandler({ payload }) {
   const { query, page } = payload; 
   try {
@@ -52,7 +52,7 @@ function* fetchSearchMoviesHandler({ payload }) {
   }
 }
 
-// Worker dla Wyszukiwania genre
+// Worker for genre searching
 function* fetchGenresHandler() {
   try {
     const data = yield call(getMovieGenres);

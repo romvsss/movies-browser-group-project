@@ -7,12 +7,11 @@ import {
   selectTotalResults,
   selectTotalPages,
 } from "../peopleSlice";
-import { PeopleListWrapper, StyledHeader, Container } from "./styled";
+import { PeopleListWrapper, Container } from "./styled";
 import { PeopleListCard } from "./PeopleListCard/index";
-import { StyledSpinner, SpinnerWrapper } from "../../../common/Loading/styled";
-import { Error } from "../../../common/Error/index";
-import { NoResults } from "../../../common/NoResults/index";
-import { Pagination } from "../../../common/Pagination";
+import { Pagination, maxPageSize } from "../../../common/Pagination";
+import { PeopleListHeader } from "./PeopleListHeader";
+import { PeopleListContent } from "./PeopleListContent";
 
 export const PeopleList = () => {
   const dispatch = useDispatch();
@@ -44,58 +43,33 @@ export const PeopleList = () => {
     }
   };
 
-  if (status === "error") {
-    return <Error />;
-  }
-
   return (
-    <>
-      <PeopleListWrapper>
-        <StyledHeader>
-          {query ? (
-            status === "success" && totalResults === 0 ? (
-              <>Sorry, there are no results for "{query}"</>
-            ) : (
-              <>
-                Search results for "{query}"
-                {status === "success" && totalResults > 0 && (
-                  <> ({totalResults})</>
-                )}
-              </>
-            )
-          ) : (
-            "Popular people"
-          )}
-        </StyledHeader>
+    <PeopleListWrapper>
+      <PeopleListHeader
+        query={query}
+        status={status}
+        totalResults={totalResults}
+      />
 
-        {status === "loading" && (
-          <SpinnerWrapper>
-            <StyledSpinner />
-          </SpinnerWrapper>
-        )}
+      <PeopleListContent
+        status={status}
+        isNoResults={isNoResults}
+        query={query}
+      >
+        <>
+          <Container>
+            {people.map((person) => (
+              <PeopleListCard key={person.id} person={person} />
+            ))}
+          </Container>
 
-        {status === "success" && (
-          <>
-            {isNoResults ? (
-              <NoResults query={query} />
-            ) : (
-              <>
-                <Container>
-                  {people.map((person) => (
-                    <PeopleListCard key={person.id} person={person} />
-                  ))}
-                </Container>
-
-                <Pagination
-                  page={page}
-                  totalPages={Math.min(totalPages, 500)}
-                  onPageChange={onPageChange}
-                />
-              </>
-            )}
-          </>
-        )}
-      </PeopleListWrapper>
-    </>
+          <Pagination
+            page={page}
+            totalPages={Math.min(totalPages, maxPageSize)}
+            onPageChange={onPageChange}
+          />
+        </>
+      </PeopleListContent>
+    </PeopleListWrapper>
   );
 };
